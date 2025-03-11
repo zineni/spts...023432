@@ -1733,21 +1733,17 @@ spawn(function()
 			lastlocationy = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.y
 			lastlocationz = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.z
 			SavePosition.Text = "Last Place: " ..lastlocationx.. "," ..lastlocationy.. "," ..lastlocationz
-			--print(tostring(SavePosition.Text))
 			wait(0.5)
 		end
 		if playerdied then
-			--print("Player " ..tostring(game.Players.LocalPlayer.Name).. " Died")
-			--print(tostring(SavePosition.Text))
 			game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
 			wait(2.6)
-			--print("screengui disabled")
 			repeat wait(0.1) until game.Players.LocalPlayer.Character.Humanoid
-			--print("Teleporting back to " ..tostring(SavePosition.Text))
 			if deathreturnactive then
 				local FindHum = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(lastlocationx, lastlocationy, lastlocationz)
-			end          
+			end    
+            wait(0.5)      
             game.Lighting.Blur.Enabled = false
             game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
             game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
@@ -1757,7 +1753,6 @@ spawn(function()
 	end		
 end)
 
--- Annoy Player --
 
 AnnoyStart.MouseButton1Click:Connect(function()
 	if annoyplayeractive ~= true then
@@ -1791,7 +1786,7 @@ spawn(function()
 					end)
 					while annoyplayeractive == true do
 						player.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-						wait(.005)
+						wait(0.005)
 					end
 					player.HumanoidRootPart.CFrame = startpos
 				end
