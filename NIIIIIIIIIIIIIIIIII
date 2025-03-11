@@ -1739,12 +1739,7 @@ spawn(function()
 		if playerdied then
 			--print("Player " ..tostring(game.Players.LocalPlayer.Name).. " Died")
 			--print(tostring(SavePosition.Text))
-			wait(3)
 			game:GetService("ReplicatedStorage").RemoteEvent:FireServer({[1] = "Respawn"})
-			wait(1)
-			game.Lighting.Blur.Enabled = false
-            game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
-            game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
 			wait(2.6)
 			--print("screengui disabled")
 			repeat wait(0.1) until game.Players.LocalPlayer.Character.Humanoid
@@ -1752,7 +1747,10 @@ spawn(function()
 			if deathreturnactive then
 				local FindHum = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(lastlocationx, lastlocationy, lastlocationz)
-			end
+			end          
+            game.Lighting.Blur.Enabled = false
+            game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
+            game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
 			playerdied = false
 		end
 		wait(1)
