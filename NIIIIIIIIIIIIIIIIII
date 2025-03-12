@@ -468,7 +468,7 @@ Location1.TextSize = 16
 
 Location2.Name = "Location2"
 Location2.Parent = WayPointsFrame
-Location2.BackgroundColor3 = Color3.new(70/255, 105/255, 0)
+Location2.BackgroundColor3 = Color3.new(255/255, 15/255, 0)
 Location2.TextColor3 = Color3.new(1, 1, 1)
 Location2.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location2.Position = UDim2.new(0, 5, 0, 55)
@@ -480,7 +480,7 @@ Location2.TextSize = 16
 
 Location7.Name = "Location7"
 Location7.Parent = WayPointsFrame
-Location7.BackgroundColor3 = Color3.new(70/255, 105/255, 0)
+Location7.BackgroundColor3 = Color3.new(255/255, 15/255, 0)
 Location7.TextColor3 = Color3.new(1, 1, 1)
 Location7.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location7.Position = UDim2.new(0, 5, 0, 80)
@@ -492,7 +492,7 @@ Location7.TextSize = 16
 
 LocationFS1B.Name = "LocationFS1B"
 LocationFS1B.Parent = WayPointsFrame
-LocationFS1B.BackgroundColor3 = Color3.new(70/255, 105/255, 0)
+LocationFS1B.BackgroundColor3 = Color3.new(255/255, 15/255, 0)
 LocationFS1B.TextColor3 = Color3.new(1, 1, 1)
 LocationFS1B.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationFS1B.Position = UDim2.new(0, 5, 0, 105)
@@ -504,7 +504,7 @@ LocationFS1B.TextSize = 16
 
 LocationFS100B.Name = "LocationFS100B"
 LocationFS100B.Parent = WayPointsFrame
-LocationFS100B.BackgroundColor3 = Color3.new(70/255, 105/255, 0)
+LocationFS100B.BackgroundColor3 = Color3.new(255/255, 15/255, 0)
 LocationFS100B.TextColor3 = Color3.new(1, 1, 1)
 LocationFS100B.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationFS100B.Position = UDim2.new(0, 5, 0, 130)
@@ -516,7 +516,7 @@ LocationFS100B.TextSize = 16
 
 LocationFS10T.Name = "LocationFS10T"
 LocationFS10T.Parent = WayPointsFrame
-LocationFS10T.BackgroundColor3 = Color3.new(70/255, 105/255, 0)
+LocationFS10T.BackgroundColor3 = Color3.new(255/255, 15/255, 0)
 LocationFS10T.TextColor3 = Color3.new(1, 1, 1)
 LocationFS10T.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationFS10T.Position = UDim2.new(0, 5, 0, 155)
@@ -528,7 +528,7 @@ LocationFS10T.TextSize = 16
 
 Location3.Name = "Location3"
 Location3.Parent = WayPointsFrame
-Location3.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+Location3.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 Location3.TextColor3 = Color3.new(1, 1, 1)
 Location3.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location3.Position = UDim2.new(0, 5, 0, 180)
@@ -540,7 +540,7 @@ Location3.TextSize = 16
 
 Location4.Name = "Location4"
 Location4.Parent = WayPointsFrame
-Location4.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+Location4.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 Location4.TextColor3 = Color3.new(1, 1, 1)
 Location4.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location4.Position = UDim2.new(0, 5, 0, 205)
@@ -552,7 +552,7 @@ Location4.TextSize = 16
 
 Location5.Name = "Location5"
 Location5.Parent = WayPointsFrame
-Location5.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+Location5.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 Location5.TextColor3 = Color3.new(1, 1, 1)
 Location5.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location5.Position = UDim2.new(0, 5, 0, 230)
@@ -564,7 +564,7 @@ Location5.TextSize = 16
 
 Location6.Name = "Location6"
 Location6.Parent = WayPointsFrame
-Location6.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+Location6.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 Location6.TextColor3 = Color3.new(1, 1, 1)
 Location6.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location6.Position = UDim2.new(0, 5, 0, 255)
@@ -576,7 +576,7 @@ Location6.TextSize = 16
 
 Location8.Name = "Location8"
 Location8.Parent = WayPointsFrame
-Location8.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+Location8.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 Location8.TextColor3 = Color3.new(1, 1, 1)
 Location8.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 Location8.Position = UDim2.new(0, 5, 0, 280)
@@ -588,7 +588,7 @@ Location8.TextSize = 16
 
 LocationBT1B.Name = "LocationBT1B"
 LocationBT1B.Parent = WayPointsFrame
-LocationBT1B.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+LocationBT1B.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 LocationBT1B.TextColor3 = Color3.new(1, 1, 1)
 LocationBT1B.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationBT1B.Position = UDim2.new(0, 5, 0, 305)
@@ -600,7 +600,7 @@ LocationBT1B.TextSize = 16
 
 LocationBT100B.Name = "LocationBT100B"
 LocationBT100B.Parent = WayPointsFrame
-LocationBT100B.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+LocationBT100B.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 LocationBT100B.TextColor3 = Color3.new(1, 1, 1)
 LocationBT100B.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationBT100B.Position = UDim2.new(0, 5, 0, 330)
@@ -612,7 +612,7 @@ LocationBT100B.TextSize = 16
 
 LocationBT10T.Name = "LocationBT10T"
 LocationBT10T.Parent = WayPointsFrame
-LocationBT10T.BackgroundColor3 = Color3.new(66/255, 0, 165/255)
+LocationBT10T.BackgroundColor3 = Color3.new(100/255, 0.6, 0/255)
 LocationBT10T.TextColor3 = Color3.new(1, 1, 1)
 LocationBT10T.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationBT10T.Position = UDim2.new(0, 5, 0, 355)
@@ -624,7 +624,7 @@ LocationBT10T.TextSize = 16
 
 LocationPP1M.Name = "LocationPP1M"
 LocationPP1M.Parent = WayPointsFrame
-LocationPP1M.BackgroundColor3 = Color3.new(195/255, 0, 39/255)
+LocationPP1M.BackgroundColor3 = Color3.new(75/255, 0, 191/255)
 LocationPP1M.TextColor3 = Color3.new(1, 1, 1)
 LocationPP1M.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationPP1M.Position = UDim2.new(0, 5, 0, 380)
@@ -636,7 +636,7 @@ LocationPP1M.TextSize = 16
 
 LocationPP1B.Name = "LocationPP1B"
 LocationPP1B.Parent = WayPointsFrame
-LocationPP1B.BackgroundColor3 = Color3.new(195/255, 0, 39/255)
+LocationPP1B.BackgroundColor3 = Color3.new(75/255, 0, 191/255)
 LocationPP1B.TextColor3 = Color3.new(1, 1, 1)
 LocationPP1B.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationPP1B.Position = UDim2.new(0, 5, 0, 405)
@@ -648,7 +648,7 @@ LocationPP1B.TextSize = 16
 
 LocationPP1T.Name = "LocationPP1T"
 LocationPP1T.Parent = WayPointsFrame
-LocationPP1T.BackgroundColor3 = Color3.new(195/255, 0, 39/255)
+LocationPP1T.BackgroundColor3 = Color3.new(75/255, 0, 191/255)
 LocationPP1T.TextColor3 = Color3.new(1, 1, 1)
 LocationPP1T.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationPP1T.Position = UDim2.new(0, 5, 0, 430)
@@ -660,7 +660,7 @@ LocationPP1T.TextSize = 16
 
 LocationPP1Qa.Name = "LocationPP1Qa"
 LocationPP1Qa.Parent = WayPointsFrame
-LocationPP1Qa.BackgroundColor3 = Color3.new(195/255, 0, 39/255)
+LocationPP1Qa.BackgroundColor3 = Color3.new(75/255, 0, 191/255)
 LocationPP1Qa.TextColor3 = Color3.new(1, 1, 1)
 LocationPP1Qa.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
 LocationPP1Qa.Position = UDim2.new(0, 5, 0, 455)
@@ -2760,18 +2760,12 @@ Credits.MouseButton1Click:Connect(function()
 end)
 
 
-
-
-
-
-
-
-
-
-
 KButton.MouseButton1Click:Connect(function()
 	for i = 1,300 do
 		game.Workspace[Name.Text].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1
+        local Remote = game.ReplicatedStorage['RemoteEvent']
+	    local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	    Remote:FireServer(unpack(Arguments))
 		wait()
 	end
 end)
@@ -2779,6 +2773,9 @@ KButton6.MouseButton1Click:Connect(function()
 	for i = 1,300 do
 		if game.Workspace[Name.Text].Humanoid.MaxHealth <= game.Players.LocalPlayer.Character.Humanoid.MaxHealth*3 then
 		game.Workspace[Name.Text].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1
+        local Remote = game.ReplicatedStorage['RemoteEvent']
+	    local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	    Remote:FireServer(unpack(Arguments))
 		wait()
 		end
 		end
@@ -2796,6 +2793,9 @@ KButton2.MouseButton1Click:Connect(function()
     if run then
     while wait() do
     if run then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2809,11 +2809,13 @@ KButton7.MouseButton1Click:Connect(function()
     player.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1
     end
     end
-    end
-     
+    end   
     if run2 then
     while wait() do
     if run2 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2832,6 +2834,9 @@ KButton3.MouseButton1Click:Connect(function()
     if run3 then
     while wait() do
     if run3 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2850,6 +2855,9 @@ KButton4.MouseButton1Click:Connect(function()
     if run4 then
     while wait() do
     if run4 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2868,6 +2876,9 @@ KButton5.MouseButton1Click:Connect(function()
     if run5 then
     while wait() do
     if run5 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2886,6 +2897,9 @@ KButton8.MouseButton1Click:Connect(function()
     if run6 then
     while wait() do
     if run6 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2904,6 +2918,9 @@ KButton9.MouseButton1Click:Connect(function()
     if run7 then
     while wait() do
     if run7 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2922,6 +2939,9 @@ KButton10.MouseButton1Click:Connect(function()
     if run8 then
     while wait() do
     if run8 then
+    local Remote = game.ReplicatedStorage['RemoteEvent']
+	local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+	Remote:FireServer(unpack(Arguments))
     tp()
     end
     end
@@ -2949,5 +2969,27 @@ Leak.MouseButton1Click:Connect(function()
 		Leaks.Visible = false
 	elseif Leaks.Visible == false then
 		Leaks.Visible = true
+	end
+end)
+
+local d = false
+local UIS = game:GetService("UserInputService")
+UIS.InputBegan:Connect(function(input,isTyping)
+	if isTyping then
+		return
+	elseif input.KeyCode == Enum.KeyCode.F1 then
+		pcall(function()
+			local j = game.Players.LocalPlayer.Character:GetPrimaryPartCFrame()
+			game.ReplicatedStorage.RemoteEvent:FireServer({"Respawn"})
+
+			game.Players.LocalPlayer.Character:remove()
+
+			wait(2)
+			if d == true then
+				game.Players.LocalPlayer.Character.ForceField:remove()
+			end
+			game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(j)
+
+		end)
 	end
 end)
