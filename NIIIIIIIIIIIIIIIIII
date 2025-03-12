@@ -2763,9 +2763,6 @@ end)
 KButton.MouseButton1Click:Connect(function()
 	for i = 1,300 do
 		game.Workspace[Name.Text].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1
-        local Remote = game.ReplicatedStorage['RemoteEvent']
-	    local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
-	    Remote:FireServer(unpack(Arguments))
 		wait()
 	end
 end)
@@ -2773,9 +2770,6 @@ KButton6.MouseButton1Click:Connect(function()
 	for i = 1,300 do
 		if game.Workspace[Name.Text].Humanoid.MaxHealth <= game.Players.LocalPlayer.Character.Humanoid.MaxHealth*3 then
 		game.Workspace[Name.Text].HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 1
-        local Remote = game.ReplicatedStorage['RemoteEvent']
-	    local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
-	    Remote:FireServer(unpack(Arguments))
 		wait()
 		end
 		end
