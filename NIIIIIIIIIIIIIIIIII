@@ -2987,3 +2987,47 @@ UIS.InputBegan:Connect(function(input,isTyping)
 		end)
 	end
 end)
+
+function PlayerJoined(text)
+	game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+		Text = text;
+		Color = Color3.fromRGB(0, 85, 255);
+		Font = Enum.Font.Oswald;
+		TextSize = 25
+	})
+end
+
+function PlayerLeft(text)
+	game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+		Text = text;
+		Color = Color3.fromRGB(255, 0, 0);
+		Font = Enum.Font.Oswald;
+		TextSize = 25
+	})
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(whojoined)
+	PlayerJoined(" "..whojoined.Name.." joined the server")
+	if whojoined.Name == "Ultimet_Frayzer" then
+		PlayerJoined(" "..whojoined.Name.." Owner joined the server")
+		elseif whojoined.Name == "Ultimet_FrayzerALT" then
+		PlayerJoined(" "..whojoined.Name.." Owner joined the server")
+		elseif whojoined.Name == "slt51perohackeado" then
+		PlayerJoined(" "..whojoined.Name.." Staff  joined the server")
+		
+		
+	end
+end)
+	
+
+game:GetService("Players").PlayerRemoving:Connect(function(wholeft)
+	PlayerLeft(" "..wholeft.Name.." left The Server")
+	if wholeft.Name == "Ultimet_Frayzer" then
+		PlayerJoined(" "..wholeft.Name.." Owner left the server")
+	elseif wholeft.Name == "Ultimet_FrayzerALT" then
+		PlayerJoined(" "..wholeft.Name.." Owner left the server")
+	elseif wholeft.Name == "slt51perohackeado2" then
+		PlayerJoined(" "..wholeft.Name.." Staff left the server")
+		end
+	
+end)
