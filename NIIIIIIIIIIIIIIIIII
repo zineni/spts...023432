@@ -2993,7 +2993,7 @@ function PlayerJoined(text)
 		Text = text;
 		Color = Color3.fromRGB(0, 85, 255);
 		Font = Enum.Font.Oswald;
-		TextSize = 25
+		TextSize = 10
 	})
 end
 
@@ -3002,7 +3002,7 @@ function PlayerLeft(text)
 		Text = text;
 		Color = Color3.fromRGB(255, 0, 0);
 		Font = Enum.Font.Oswald;
-		TextSize = 25
+		TextSize = 10
 	})
 end
 
