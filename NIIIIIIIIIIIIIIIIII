@@ -376,7 +376,8 @@ local bannedUsernames = {
     "Rafaelox21",
     "TahNaJaCT",
     "Zack7757",
-    "zachod147"
+    "zachod147",
+    "chewbobyjon"
 }
 
 local function createPlayerStatLabels()
@@ -2278,6 +2279,7 @@ local Selected = Instance.new("StringValue")
 local Selected2 = Instance.new("StringValue")
 local KillAllOnReaper = Instance.new("TextButton")
 local KillKosOnReaper = Instance.new("TextButton")
+local G = 1
 --Properties:
 
 
@@ -2449,6 +2451,24 @@ KillAllOnReaper.TextScaled = true
 KillAllOnReaper.TextSize = 14
 KillAllOnReaper.TextStrokeTransparency = 0
 KillAllOnReaper.TextWrapped = true
+KillAllOnReaper.MouseButton1Down:connect(function()
+    
+    if G == 1 then
+        G = 0
+    else
+        G = 1
+    end
+    while G == 1 do
+        for _, player in ipairs(Players:GetPlayers()) do
+            local PlayerHealth = converttoletter(string.format("%.0f", player.Health))
+            if PlayerHealth > 0 then
+                game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
+                wait(0.2)
+            end
+        end
+    end
+end)
+
 
 SafeFR.Name = "SafeFR"
 SafeFR.Parent = MainGUI
@@ -2582,7 +2602,7 @@ KButton10.TextStrokeTransparency = 0
 KButton10.TextWrapped = true
 
 KillKosOnReaper.Name = "KillKosOnReaper"
-KillKosOnReaper.Parent = UnSafeFR
+KillKosOnReaper.Parent = SafeFR
 KillKosOnReaper.BackgroundColor3 = Color3.new(0, 0, 0)
 KillKosOnReaper.BackgroundTransparency = 0.5
 KillKosOnReaper.BorderColor3 = Color3.new(1, 0, 0)
@@ -2597,6 +2617,23 @@ KillKosOnReaper.TextScaled = true
 KillKosOnReaper.TextSize = 14
 KillKosOnReaper.TextStrokeTransparency = 0
 KillKosOnReaper.TextWrapped = true
+KillKosOnReaper.MouseButton1Down:connect(function()
+    
+    if G == 1 then
+        G = 0
+    else
+        G = 1
+    end
+    while G == 1 do
+        for _, player in ipairs(bannedUsernames) do
+            local PlayerHealth = converttoletter(string.format("%.0f", player.Health))
+            if PlayerHealth > 0 then
+                game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
+                wait(0.2)
+            end
+        end
+    end
+end)
 
 PlrNameStats.Name = "PlrNameStats"
 PlrNameStats.Parent = Leaks
