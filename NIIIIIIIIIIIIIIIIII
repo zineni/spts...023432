@@ -376,8 +376,7 @@ local bannedUsernames = {
     "Rafaelox21",
     "TahNaJaCT",
     "Zack7757",
-    "zachod147",
-    "chewbobyjon"
+    "zachod147"
 }
 
 local function createPlayerStatLabels()
@@ -2277,7 +2276,10 @@ local Healthbar = Instance.new("TextButton")
 local Posbar = Instance.new("TextButton")
 local Selected = Instance.new("StringValue")
 local Selected2 = Instance.new("StringValue")
+local KillAllOnReaper = Instance.new("TextButton")
+local KillKosOnReaper = Instance.new("TextButton")
 --Properties:
+
 
 Selected.Value = "UnSafeFR"
 Selected2.Value = "None"
@@ -2307,8 +2309,8 @@ UnSafeFR.BackgroundColor3 = Color3.new(0, 0, 0)
 UnSafeFR.BackgroundTransparency = 0.30000001192093
 UnSafeFR.BorderColor3 = Color3.new(1, 0, 0)
 UnSafeFR.BorderSizePixel = 4
-UnSafeFR.Position = UDim2.new(0.24960126, 0, 0.31184411, 0)
-UnSafeFR.Size = UDim2.new(0.40271011, 0, 0.481259316, 0)
+UnSafeFR.Position = UDim2.new(0.5, -244.5, 0, 15) 
+UnSafeFR.Size = UDim2.new(0, 500, 0, 308)
 UnSafeFR.Visible = false
 
 KButton.Name = "KButton"
@@ -2317,8 +2319,8 @@ KButton.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton.BackgroundTransparency = 0.5
 KButton.BorderColor3 = Color3.new(1, 0, 0)
 KButton.BorderSizePixel = 2
-KButton.Position = UDim2.new(0.0634417087, 0, 0.164775103, 0)
-KButton.Size = UDim2.new(0.867684603, 0, 0.109190084, 0)
+KButton.Position = UDim2.new(0.5, -219, 0, 55)
+KButton.Size = UDim2.new(0, 438, 0, 25)
 KButton.Selected = true
 KButton.Font = Enum.Font.Cartoon
 KButton.Text = "KILL "
@@ -2334,8 +2336,8 @@ KButton2.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton2.BackgroundTransparency = 0.5
 KButton2.BorderColor3 = Color3.new(1, 0.4, 0)
 KButton2.BorderSizePixel = 2
-KButton2.Position = UDim2.new(0.0634417087, 0, 0.415014476, 0)
-KButton2.Size = UDim2.new(0.867684901, 0, 0.0998442471, 0)
+KButton2.Position = UDim2.new(0.5, -219, 0, 135)
+KButton2.Size = UDim2.new(0, 438, 0, 25)
 KButton2.Selected = true
 KButton2.Font = Enum.Font.Cartoon
 KButton2.Text = "KILL ALL (Risk)"
@@ -2351,8 +2353,8 @@ SafeMode.BackgroundColor3 = Color3.new(0, 0, 0)
 SafeMode.BackgroundTransparency = 0.5
 SafeMode.BorderColor3 = Color3.new(1, 0, 0)
 SafeMode.BorderSizePixel = 3
-SafeMode.Position = UDim2.new(0.107057884, 0, 0.0293614306, 0)
-SafeMode.Size = UDim2.new(0.77648741, 0, 0.0760902986, 0)
+SafeMode.Position = UDim2.new(0.5, -219, 0, 10)
+SafeMode.Size = UDim2.new(0, 438, 0, 25)
 SafeMode.Selected = true
 SafeMode.Font = Enum.Font.Cartoon
 SafeMode.Text = "Safe Mode OFF"
@@ -2368,8 +2370,8 @@ Name.BackgroundColor3 = Color3.new(0, 0, 0)
 Name.BackgroundTransparency = 0.5
 Name.BorderColor3 = Color3.new(1, 0, 0)
 Name.BorderSizePixel = 2
-Name.Position = UDim2.new(0.0634417087, 0, 0.300069571, 0)
-Name.Size = UDim2.new(0.867684662, 0, 0.0868584365, 0)
+Name.Position = UDim2.new(0.5, -219, 0, 90)
+Name.Size = UDim2.new(0, 438, 0, 25)
 Name.Font = Enum.Font.SourceSans
 Name.PlaceholderColor3 = Color3.new(1, 0, 0)
 Name.PlaceholderText = "Name"
@@ -2384,14 +2386,14 @@ KButton3.Name = "KButton3"
 KButton3.Parent = UnSafeFR
 KButton3.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton3.BackgroundTransparency = 0.5
-KButton3.BorderColor3 = Color3.new(1, 0.262745, 0.262745)
+KButton3.BorderColor3 = Color3.new(1, 1, 1)
 KButton3.BorderSizePixel = 2
-KButton3.Position = UDim2.new(0.0594766028, 0, 0.604027569, 0)
-KButton3.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton3.Position = UDim2.new(0.5, -219, 0, 169)
+KButton3.Size = UDim2.new(0, 438, 0, 25)
 KButton3.Selected = true
 KButton3.Font = Enum.Font.Cartoon
 KButton3.Text = "KILL INNOCENT (Risk)"
-KButton3.TextColor3 = Color3.new(1, 0.545098, 0.545098)
+KButton3.TextColor3 = Color3.new(1, 1, 1)
 KButton3.TextScaled = true
 KButton3.TextSize = 14
 KButton3.TextStrokeTransparency = 0
@@ -2401,14 +2403,14 @@ KButton4.Name = "KButton4"
 KButton4.Parent = UnSafeFR
 KButton4.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton4.BackgroundTransparency = 0.5
-KButton4.BorderColor3 = Color3.new(1, 0.8, 0)
+KButton4.BorderColor3 = Color3.new(0, 0.798, 1)
 KButton4.BorderSizePixel = 2
-KButton4.Position = UDim2.new(0.0634417087, 0, 0.719292402, 0)
-KButton4.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton4.Position = UDim2.new(0.5, -219, 0, 237)
+KButton4.Size = UDim2.new(0, 438, 0, 25)
 KButton4.Selected = true
 KButton4.Font = Enum.Font.Cartoon
 KButton4.Text = "KILL HEROS (Risk)"
-KButton4.TextColor3 = Color3.new(1, 0.717647, 0)
+KButton4.TextColor3 = Color3.new(0, 0.798, 1)
 KButton4.TextScaled = true
 KButton4.TextSize = 14
 KButton4.TextStrokeTransparency = 0
@@ -2418,19 +2420,35 @@ KButton5.Name = "KButton5"
 KButton5.Parent = UnSafeFR
 KButton5.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton5.BackgroundTransparency = 0.5
-KButton5.BorderColor3 = Color3.new(1, 0.403922, 0.00392157)
+KButton5.BorderColor3 = Color3.new(1, 0, 0)
 KButton5.BorderSizePixel = 2
-KButton5.Position = UDim2.new(0.0634417087, 0, 0.831441939, 0)
-KButton5.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton5.Position = UDim2.new(0.5, -219, 0, 203)
+KButton5.Size = UDim2.new(0, 438, 0, 25)
 KButton5.Selected = true
 KButton5.Font = Enum.Font.Cartoon
 KButton5.Text = "KILL VILLIANS (Risk)"
 KButton5.TextColor3 = Color3.new(1, 0, 0)
 KButton5.TextScaled = true
 KButton5.TextSize = 14
-KButton5.TextStrokeColor3 = Color3.new(1, 0.364706, 0)
 KButton5.TextStrokeTransparency = 0
 KButton5.TextWrapped = true
+
+KillAllOnReaper.Name = "KillAllOnReaper"
+KillAllOnReaper.Parent = UnSafeFR
+KillAllOnReaper.BackgroundColor3 = Color3.new(0, 0, 0)
+KillAllOnReaper.BackgroundTransparency = 0.5
+KillAllOnReaper.BorderColor3 = Color3.new(1, 0, 0)
+KillAllOnReaper.BorderSizePixel = 2
+KillAllOnReaper.Position = UDim2.new(0.5, -219, 0, 271)
+KillAllOnReaper.Size = UDim2.new(0, 438, 0, 25)
+KillAllOnReaper.Selected = true
+KillAllOnReaper.Font = Enum.Font.Cartoon
+KillAllOnReaper.Text = "All reaper"
+KillAllOnReaper.TextColor3 = Color3.new(1, 0, 0)
+KillAllOnReaper.TextScaled = true
+KillAllOnReaper.TextSize = 14
+KillAllOnReaper.TextStrokeTransparency = 0
+KillAllOnReaper.TextWrapped = true
 
 SafeFR.Name = "SafeFR"
 SafeFR.Parent = MainGUI
@@ -2438,8 +2456,8 @@ SafeFR.BackgroundColor3 = Color3.new(0, 0, 0)
 SafeFR.BackgroundTransparency = 0.30000001192093
 SafeFR.BorderColor3 = Color3.new(0, 0.133333, 1)
 SafeFR.BorderSizePixel = 4
-SafeFR.Position = UDim2.new(0.24960126, 0, 0.31184411, 0)
-SafeFR.Size = UDim2.new(0.40271011, 0, 0.481259316, 0)
+SafeFR.Position = UDim2.new(0.5, -244.5, 0, 15)
+SafeFR.Size = UDim2.new(0, 500, 0, 308)
 SafeFR.Visible = false
 
 KButton6.Name = "KButton6"
@@ -2448,8 +2466,8 @@ KButton6.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton6.BackgroundTransparency = 0.5
 KButton6.BorderColor3 = Color3.new(0, 0.4, 1)
 KButton6.BorderSizePixel = 2
-KButton6.Position = UDim2.new(0.0634417087, 0, 0.164775103, 0)
-KButton6.Size = UDim2.new(0.867684603, 0, 0.109190084, 0)
+KButton6.Position = UDim2.new(0.5, -219, 0, 55)
+KButton6.Size = UDim2.new(0, 438, 0, 25)
 KButton6.Selected = true
 KButton6.Font = Enum.Font.Cartoon
 KButton6.Text = "KILL "
@@ -2465,8 +2483,8 @@ KButton7.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton7.BackgroundTransparency = 0.5
 KButton7.BorderColor3 = Color3.new(0, 0.568627, 1)
 KButton7.BorderSizePixel = 2
-KButton7.Position = UDim2.new(0.0634417087, 0, 0.415014476, 0)
-KButton7.Size = UDim2.new(0.867684901, 0, 0.0998442471, 0)
+KButton7.Position = UDim2.new(0.5, -219, 0, 135)
+KButton7.Size = UDim2.new(0, 438, 0, 25)
 KButton7.Selected = true
 KButton7.Font = Enum.Font.Cartoon
 KButton7.Text = "KILL ALL"
@@ -2482,8 +2500,8 @@ SafeMode_2.BackgroundColor3 = Color3.new(0, 0, 0)
 SafeMode_2.BackgroundTransparency = 0.5
 SafeMode_2.BorderColor3 = Color3.new(0.0823529, 0, 1)
 SafeMode_2.BorderSizePixel = 3
-SafeMode_2.Position = UDim2.new(0.107057884, 0, 0.0293614306, 0)
-SafeMode_2.Size = UDim2.new(0.77648741, 0, 0.0760902986, 0)
+SafeMode_2.Position = UDim2.new(0.5, -219, 0, 10)
+SafeMode_2.Size = UDim2.new(0, 438, 0, 25)
 SafeMode_2.Selected = true
 SafeMode_2.Font = Enum.Font.Cartoon
 SafeMode_2.Text = "Safe Mode ON"
@@ -2499,8 +2517,8 @@ Name_2.BackgroundColor3 = Color3.new(0, 0, 0)
 Name_2.BackgroundTransparency = 0.5
 Name_2.BorderColor3 = Color3.new(0, 0.784314, 1)
 Name_2.BorderSizePixel = 2
-Name_2.Position = UDim2.new(0.0634417087, 0, 0.300069571, 0)
-Name_2.Size = UDim2.new(0.867684662, 0, 0.0868584365, 0)
+Name_2.Position = UDim2.new(0.5, -219, 0, 90)
+Name_2.Size = UDim2.new(0, 438, 0, 25)
 Name_2.Font = Enum.Font.SourceSans
 Name_2.PlaceholderColor3 = Color3.new(0.027451, 0.823529, 1)
 Name_2.PlaceholderText = "Name"
@@ -2517,8 +2535,8 @@ KButton8.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton8.BackgroundTransparency = 0.5
 KButton8.BorderColor3 = Color3.new(0.0196078, 0.329412, 1)
 KButton8.BorderSizePixel = 2
-KButton8.Position = UDim2.new(0.0594766028, 0, 0.604027569, 0)
-KButton8.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton8.Position = UDim2.new(0.5, -219, 0, 169)
+KButton8.Size = UDim2.new(0, 438, 0, 25)
 KButton8.Selected = true
 KButton8.Font = Enum.Font.Cartoon
 KButton8.Text = "KILL INNOCENT"
@@ -2534,8 +2552,8 @@ KButton9.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton9.BackgroundTransparency = 0.5
 KButton9.BorderColor3 = Color3.new(0, 0.952941, 1)
 KButton9.BorderSizePixel = 2
-KButton9.Position = UDim2.new(0.0634417087, 0, 0.719292402, 0)
-KButton9.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton9.Position = UDim2.new(0.5, -219, 0, 236)
+KButton9.Size = UDim2.new(0, 438, 0, 25)
 KButton9.Selected = true
 KButton9.Font = Enum.Font.Cartoon
 KButton9.Text = "KILL HEROS"
@@ -2551,8 +2569,8 @@ KButton10.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton10.BackgroundTransparency = 0.5
 KButton10.BorderColor3 = Color3.new(0, 0.0980392, 1)
 KButton10.BorderSizePixel = 2
-KButton10.Position = UDim2.new(0.0634417087, 0, 0.831441939, 0)
-KButton10.Size = UDim2.new(0.867684662, 0, 0.087383233, 0)
+KButton10.Position = UDim2.new(0.5, -219, 0, 202)
+KButton10.Size = UDim2.new(0, 438, 0, 25)
 KButton10.Selected = true
 KButton10.Font = Enum.Font.Cartoon
 KButton10.Text = "KILL VILLIANS"
@@ -2563,12 +2581,29 @@ KButton10.TextStrokeColor3 = Color3.new(0.113725, 0, 1)
 KButton10.TextStrokeTransparency = 0
 KButton10.TextWrapped = true
 
+KillKosOnReaper.Name = "KillKosOnReaper"
+KillKosOnReaper.Parent = UnSafeFR
+KillKosOnReaper.BackgroundColor3 = Color3.new(0, 0, 0)
+KillKosOnReaper.BackgroundTransparency = 0.5
+KillKosOnReaper.BorderColor3 = Color3.new(1, 0, 0)
+KillKosOnReaper.BorderSizePixel = 2
+KillKosOnReaper.Position = UDim2.new(0.5, -219, 0, 271)
+KillKosOnReaper.Size = UDim2.new(0, 438, 0, 25)
+KillKosOnReaper.Selected = true
+KillKosOnReaper.Font = Enum.Font.Cartoon
+KillKosOnReaper.Text = "Kos reaper"
+KillKosOnReaper.TextColor3 = Color3.new(1, 0, 0)
+KillKosOnReaper.TextScaled = true
+KillKosOnReaper.TextSize = 14
+KillKosOnReaper.TextStrokeTransparency = 0
+KillKosOnReaper.TextWrapped = true
+
 PlrNameStats.Name = "PlrNameStats"
 PlrNameStats.Parent = Leaks
 PlrNameStats.BackgroundColor3 = Color3.new(1, 1, 1)
 PlrNameStats.BackgroundTransparency = 1
 PlrNameStats.Position = UDim2.new(0, 0, 1.77016144e-08, 0)
-PlrNameStats.Size = UDim2.new(0.464866221, 0, 0.0814385116, 0)
+PlrNameStats.Size = UDim2.new(0.464866221, 0, 0.0814385119, 0)
 PlrNameStats.Font = Enum.Font.Cartoon
 PlrNameStats.Text = "Name : None"
 PlrNameStats.TextColor3 = Color3.new(0, 0, 0)
@@ -2815,6 +2850,7 @@ QuestionL.TextScaled = true
 QuestionL.TextSize = 14
 QuestionL.TextStrokeTransparency = 0
 QuestionL.TextWrapped = true
+
 
 CloseL.Name = "CloseL"
 CloseL.Parent = LocationFrame
@@ -3142,12 +3178,11 @@ game:GetService("Players").PlayerAdded:Connect(function(whojoined)
 	PlayerJoined(" "..whojoined.Name.." joined the server")
 	if whojoined.Name == "Ultimet_Frayzer" then
 		PlayerJoined(" "..whojoined.Name.." Owner joined the server")
-		elseif whojoined.Name == "Ultimet_FrayzerALT" then
+	elseif whojoined.Name == "Ultimet_FrayzerALT" then
 		PlayerJoined(" "..whojoined.Name.." Owner joined the server")
-		elseif whojoined.Name == "slt51perohackeado" then
+	elseif whojoined.Name == "slt51perohackeado" then
 		PlayerJoined(" "..whojoined.Name.." Staff  joined the server")
-		
-		
+        updateAllStatsFrameSize()
 	end
 end)
 	
@@ -3160,6 +3195,5 @@ game:GetService("Players").PlayerRemoving:Connect(function(wholeft)
 		PlayerJoined(" "..wholeft.Name.." Owner left the server")
 	elseif wholeft.Name == "slt51perohackeado2" then
 		PlayerJoined(" "..wholeft.Name.." Staff left the server")
-		end
-	
+	end
 end)
