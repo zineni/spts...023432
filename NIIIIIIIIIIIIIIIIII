@@ -313,12 +313,175 @@ local ShowStats2 = Instance.new("TextLabel")
 local StatNameSet = Instance.new("TextButton")
 local NoClip = Instance.new("TextButton")
 local GodMode = Instance.new("TextButton")
+local Players = game:GetService("Players")
+local MainGUI = Instance.new("ScreenGui")
+local AllStatsFrame = Instance.new("Frame")
+local AllStatsText = Instance.new("TextLabel")
+local AllPlayersButton = Instance.new("TextButton")
 
--- Properties
 MainGUI.Name = "MainGUI"
 MainGUI.Parent = game.CoreGui
 MainGUI.ResetOnSpawn = false
-local MainCORE = game.CoreGui["MainGUI"]
+
+--APS
+
+AllPlayersButton.Name = "AllPlayersButton"
+AllPlayersButton.Parent = ExtrasFrame
+AllPlayersButton.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+AllPlayersButton.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
+AllPlayersButton.Position = UDim2.new(0, 5, 0, 216)
+AllPlayersButton.Size = UDim2.new(0, 150, 0, 20)
+AllPlayersButton.Font = Enum.Font.Fantasy
+AllPlayersButton.TextColor3 = Color3.new(1, 1, 1)
+AllPlayersButton.Text = "APS"
+AllPlayersButton.TextSize = 16
+AllPlayersButton.TextWrapped = true
+
+AllPlayersButton.MouseButton1Down:connect(function()
+    if AllStatsFrame.Visible == true then
+        AllStatsFrame.Visible = false
+    else 
+         AllStatsFrame.Visible = true
+    end
+end)
+
+
+AllStatsFrame.Name = "AllStatsFrame"
+AllStatsFrame.Parent = MainGUI
+AllStatsFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+AllStatsFrame.BorderColor3 = Color3.new(0, 0, 0)
+AllStatsFrame.BackgroundTransparency = 0.5
+AllStatsFrame.Position = UDim2.new(0.5, -341.5, 0, 10)
+AllStatsFrame.Size = UDim2.new(0, 683, 0, 380) 
+AllStatsFrame.Visible = false
+
+AllStatsText.Name = "AllStatsText"
+AllStatsText.Parent = AllStatsFrame
+AllStatsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+AllStatsText.BackgroundTransparency = 1
+AllStatsText.Position = UDim2.new(0.5, -50, 0, -5)
+AllStatsText.Size = UDim2.new(0, 100, 0, 30)
+AllStatsText.Font = Enum.Font.Fantasy
+AllStatsText.TextColor3 = Color3.new(1, 1, 1)
+AllStatsText.Text = "All players stats"
+AllStatsText.TextSize = 15
+AllStatsText.TextXAlignment = Enum.TextXAlignment.Right
+
+local bannedUsernames = {
+    "6paTyxa186",
+    "federicougo",
+    "GAMEMASTERv22",
+    "GAMER_PROAHAT",
+    "IshakTur0ay",
+    "Nikoreta09",
+    "Ppslavaer",
+    "Rafaelox21",
+    "TahNaJaCT",
+    "Zack7757",
+    "zachod147"
+}
+
+local function updateAllStatsFrameSize()
+    local playerCount = #Players:GetPlayers() 
+    local rows = math.ceil(playerCount / 5)
+    AllStatsFrame.Size = UDim2.new(0, 683, 0, 33 + (rows * 90)) 
+end
+
+local function createPlayerStatLabels(player, index)
+    local offset = 90 * math.floor((index - 1) / 5) 
+    local column = (index - 1) % 5 
+
+    local function formatNumber(value)
+        if value < 1000 then
+            return tostring(value)
+        elseif value < 1000000 then
+            return string.format("%.2fK", value / 1000)
+        elseif value < 1000000000 then
+            return string.format("%.2fM", value / 1000000)
+        elseif value < 1000000000000 then
+            return string.format("%.2fB", value / 1000000000000)
+        elseif value < 1000000000000000 then
+            return string.format("%.2fT", value / 1000000000000)
+        elseif value < 1000000000000000000 then
+            return string.format("%.2fQa", value / 1000000000000000)
+        else 
+            return string.format("%.2fQi", value / 1000000000000000000)
+        end
+    end
+
+    local playerNameText = Instance.new("TextLabel")
+    playerNameText.Name = "PlayerName_" .. player.Name
+    playerNameText.Parent = AllStatsFrame
+    playerNameText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    playerNameText.BackgroundTransparency = 1
+    playerNameText.Position = UDim2.new(0, 25 + (column * 140), 0, 25 + offset)
+    playerNameText.Size = UDim2.new(0, 70, 0, 30)
+    playerNameText.Font = Enum.Font.Fantasy
+
+    if table.find(bannedUsernames, player.Name) then
+        playerNameText.TextColor3 = Color3.new(1, 0, 0)
+    else
+        playerNameText.TextColor3 = Color3.new(1, 1, 1) 
+    end
+
+    playerNameText.Text = player.Name
+    playerNameText.TextSize = 15
+
+    local ppsText = Instance.new("TextLabel")
+    ppsText.Name = "PlayerPps_" .. player.Name
+    ppsText.Parent = AllStatsFrame
+    ppsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    ppsText.BackgroundTransparency = 1
+    ppsText.Position = UDim2.new(0, 25 + (column * 140), 0, 45 + offset)
+    ppsText.Size = UDim2.new(0, 70, 0, 30)
+    ppsText.Font = Enum.Font.Fantasy
+    ppsText.TextColor3 = Color3.new(1, 1, 1)
+    ppsText.Text = "Pps: "..formatNumber(game.Players[player.Name].PrivateStats.PsychicPower.Value)
+    ppsText.TextSize = 15
+
+    local BtText = Instance.new("TextLabel")
+    BtText.Name = "PlayerBt_" .. player.Name
+    BtText.Parent = AllStatsFrame
+    BtText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    BtText.BackgroundTransparency = 1
+    BtText.Position = UDim2.new(0, 25 + (column * 140), 0, 65 + offset)
+    BtText.Size = UDim2.new(0, 70, 0, 30)
+    BtText.Font = Enum.Font.Fantasy
+    BtText.TextColor3 = Color3.new(1, 1, 1)
+    BtText.Text = "Body: "..formatNumber(game.Players[player.Name].PrivateStats.BodyToughness.Value)
+    BtText.TextSize = 15
+
+    local FsText = Instance.new("TextLabel")
+    FsText.Name = "PlayerFs_" .. player.Name
+    FsText.Parent = AllStatsFrame
+    FsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    FsText.BackgroundTransparency = 1
+    FsText.Position = UDim2.new(0, 25 + (column * 140), 0, 85 + offset)
+    FsText.Size = UDim2.new(0, 70, 0, 30)
+    FsText.Font = Enum.Font.Fantasy
+    FsText.TextColor3 = Color3.new(1, 1, 1)
+    FsText.Text = "Fist: "..formatNumber(game.Players[player.Name].PrivateStats.FistStrength.Value)
+    FsText.TextSize = 15
+end
+
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Wait() 
+    local currentIndex = #Players:GetPlayers()
+    createPlayerStatLabels(player, currentIndex) 
+    updateAllStatsFrameSize()
+end)
+
+for index, player in ipairs(Players:GetPlayers()) do
+    createPlayerStatLabels(player, index)
+end
+
+updateAllStatsFrameSize()
+
+Players.PlayerRemoving:Connect(function(player)
+    updateAllStatsFrameSize()
+end)
+
+-- Properties
 
 TopFrame.Name = "TopFrame"
 TopFrame.Parent = MainGUI
@@ -947,7 +1110,7 @@ ExtrasFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
 ExtrasFrame.BorderColor3 = Color3.new(0, 0, 0)
 ExtrasFrame.BackgroundTransparency = 0.2
 ExtrasFrame.Position = UDim2.new(0, 435, 0, 33)
-ExtrasFrame.Size = UDim2.new(0, 160, 0, 213)
+ExtrasFrame.Size = UDim2.new(0, 160, 0, 241)
 ExtrasFrame.Visible = false
 
 AnnoyName.Name = "AnnoyName"
@@ -2058,19 +2221,10 @@ local PLocation = Instance.new("Frame")
 local Psychic1 = Instance.new("TextButton")
 local RequestTxt = Instance.new("TextLabel")
 local FLocation = Instance.new("Frame")
-local Fist1 = Instance.new("TextButton")
-local Fist2 = Instance.new("TextButton")
-local Fist3 = Instance.new("TextButton")
-local Fist4 = Instance.new("TextButton")
-local Fist5 = Instance.new("TextButton")
 local RequestTxt_2 = Instance.new("TextLabel")
 local RequestTxt_3 = Instance.new("TextLabel")
 local RequestTxt_4 = Instance.new("TextLabel")
 local BLocation = Instance.new("Frame")
-local Body1 = Instance.new("TextButton")
-local Body2 = Instance.new("TextButton")
-local Body3 = Instance.new("TextButton")
-local Body4 = Instance.new("TextButton")
 local Body5 = Instance.new("TextButton")
 local RequestTxt_5 = Instance.new("TextLabel")
 local RequestTxt_6 = Instance.new("TextLabel")
@@ -2659,48 +2813,7 @@ CloseL.TextStrokeTransparency = 0
 CloseL.TextWrapped = true
 
 -- Scripts:
-Body1.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(365,249,-435)
-end)
-Body2.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(354,263,-480)
-end)
-Body3.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1603,269,2248)
-end)
-Body4.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2300,979,1065)
-end)
-Body5.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1980,745,-1861)
-end)
-Body6.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-278, 279, 1003)
-end)
-Fist1.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(403,271,973)
-end)
-Fist2.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2275,1966,1057)
-end)
-Fist3.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1177,4788,-2291)
-end)
-Fist4.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1378,9274,1650)
-end)
-Fist5.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-369,15735,-9)
-end)
-Psychic1.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2624,5548,-517)
-end)
-Other1.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(486,249,898)
-end)
-Other2.MouseButton1Click:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,100000,0)
-end)
+
 FistL.MouseButton1Click:Connect(function()
 	if Selected2.Value == "None" then
 		else
@@ -2966,8 +3079,6 @@ Leak.MouseButton1Click:Connect(function()
 	end
 end)
 
-local d = false
-local UIS = game:GetService("UserInputService")
 UIS.InputBegan:Connect(function(input,isTyping)
 	if isTyping then
 		return
