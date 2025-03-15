@@ -391,22 +391,28 @@ local function createPlayerStatLabels(player, index)
     local column = (index - 1) % 5 
 
     local function formatNumber(value)
-        if value < 1000 then
-            return tostring(value)
-        elseif value < 1000000 then
-            return string.format("%.2fK", value / 1000)
-        elseif value < 1000000000 then
-            return string.format("%.2fM", value / 1000000)
-        elseif value < 1000000000000 then
-            return string.format("%.2fB", value / 1000000000000)
-        elseif value < 1000000000000000 then
-            return string.format("%.2fT", value / 1000000000000)
-        elseif value < 1000000000000000000 then
-            return string.format("%.2fQa", value / 1000000000000000)
-        else 
-            return string.format("%.2fQi", value / 1000000000000000000)
-        end
+    if value < 1000 then
+        return tostring(value)
+    elseif value < 1000000 then
+        local formatted = value / 1000
+        return string.format(formatted % 1 == 0 and "%.0fK" or "%.2fK", formatted)
+    elseif value < 1000000000 then
+        local formatted = value / 1000000
+        return string.format(formatted % 1 == 0 and "%.0fM" or "%.2fM", formatted)
+    elseif value < 1000000000000 then
+        local formatted = value / 1000000000
+        return string.format(formatted % 1 == 0 and "%.0fB" or "%.2fB", formatted)
+    elseif value < 1000000000000000 then
+        local formatted = value / 1000000000000
+        return string.format(formatted % 1 == 0 and "%.0fT" or "%.2fT", formatted)
+    elseif value < 1000000000000000000 then
+        local formatted = value / 1000000000000000
+        return string.format(formatted % 1 == 0 and "%.0fQa" or "%.2fQa", formatted)
+    else
+        local formatted = value / 1000000000000000000
+        return string.format(formatted % 1 == 0 and "%.0fQi" or "%.2fQi", formatted)
     end
+end
 
     local playerNameText = Instance.new("TextLabel")
     playerNameText.Name = "PlayerName_" .. player.Name
