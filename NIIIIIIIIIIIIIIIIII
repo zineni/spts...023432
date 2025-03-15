@@ -491,10 +491,12 @@ end
 
 Players.PlayerRemoving:Connect(function(player)
     updatePlayerStats()
+    updateAllStatsFrameSize()
 end)
 
 Players.PlayerAdded:Connect(function(player)
     updatePlayerStats()
+    updateAllStatsFrameSize()
 end)
 
 updatePlayerStats()
