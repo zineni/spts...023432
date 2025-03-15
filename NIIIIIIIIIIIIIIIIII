@@ -376,7 +376,8 @@ local bannedUsernames = {
     "Rafaelox21",
     "TahNaJaCT",
     "Zack7757",
-    "zachod147"
+    "zachod147",
+    "chewbobyjon"
 }
 
 local function createPlayerStatLabels()
