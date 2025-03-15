@@ -386,7 +386,7 @@ local function createPlayerStatLabels()
         local offset = 90 * math.floor((index - 1) / 5) 
         local column = (index - 1) % 5 
 
-         local function formatNumber(value)
+        local function formatNumber(value)
             if value < 1000 then
                 return tostring(value)
             elseif value < 1000000 then
@@ -2460,12 +2460,14 @@ KillAllOnReaper.MouseButton1Down:connect(function()
     end
     while G == 1 do
         for _, player in ipairs(Players:GetPlayers()) do
-            local PlayerHealth = converttoletter(string.format("%.0f", player.Health))
+            local FindHum = player.Character:WaitForChild("Humanoid")
+			local PlayerHealth = FindHum.Health
             if PlayerHealth > 0 then
                 game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
                 wait(0.2)
             end
         end
+        
     end
 end)
 
@@ -2619,17 +2621,18 @@ KillKosOnReaper.TextStrokeTransparency = 0
 KillKosOnReaper.TextWrapped = true
 KillKosOnReaper.MouseButton1Down:connect(function()
     
-    if G == 1 then
-        G = 0
-    else
+    if G == 0 then
         G = 1
+    else
+        G = 0
     end
     while G == 1 do
         for _, player in ipairs(bannedUsernames) do
-            local PlayerHealth = converttoletter(string.format("%.0f", player.Health))
+            local FindHum = player.Character:WaitForChild("Humanoid")
+			local PlayerHealth = FindHum.Health
             if PlayerHealth > 0 then
                 game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
-                wait(0.2)
+    
             end
         end
     end
@@ -3234,3 +3237,5 @@ game:GetService("Players").PlayerRemoving:Connect(function(wholeft)
 		PlayerJoined(" "..wholeft.Name.." Staff left the server")
 	end
 end)
+
+
