@@ -432,7 +432,7 @@ local function createPlayerStatLabels(player, index)
     ppsText.Parent = AllStatsFrame
     ppsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
     ppsText.BackgroundTransparency = 1
-    ppsText.Position = UDim2.new(0, 25 + (column * 140), 0, 45 + offset)
+    ppsText.Position = UDim2.new(0, 25 + (column * 140), 0, 85+ offset)
     ppsText.Size = UDim2.new(0, 70, 0, 30)
     ppsText.Font = Enum.Font.Fantasy
     ppsText.TextColor3 = Color3.new(1, 1, 1)
@@ -444,7 +444,7 @@ local function createPlayerStatLabels(player, index)
     BtText.Parent = AllStatsFrame
     BtText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
     BtText.BackgroundTransparency = 1
-    BtText.Position = UDim2.new(0, 25 + (column * 140), 0, 65 + offset)
+    BtText.Position = UDim2.new(0, 25 + (column * 140), 0, 45 + offset)
     BtText.Size = UDim2.new(0, 70, 0, 30)
     BtText.Font = Enum.Font.Fantasy
     BtText.TextColor3 = Color3.new(1, 1, 1)
@@ -456,7 +456,7 @@ local function createPlayerStatLabels(player, index)
     FsText.Parent = AllStatsFrame
     FsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
     FsText.BackgroundTransparency = 1
-    FsText.Position = UDim2.new(0, 25 + (column * 140), 0, 85 + offset)
+    FsText.Position = UDim2.new(0, 25 + (column * 140), 0, 65 + offset)
     FsText.Size = UDim2.new(0, 70, 0, 30)
     FsText.Font = Enum.Font.Fantasy
     FsText.TextColor3 = Color3.new(1, 1, 1)
