@@ -2267,6 +2267,9 @@ local Selected = Instance.new("StringValue")
 local Selected2 = Instance.new("StringValue")
 local KillAllOnReaper = Instance.new("TextButton")
 local KillKosOnReaper = Instance.new("TextButton")
+local KillReap = Instance.new("TextButton")
+local G = 0
+local k = false
 --Properties:
 
 
@@ -2299,7 +2302,7 @@ UnSafeFR.BackgroundTransparency = 0.30000001192093
 UnSafeFR.BorderColor3 = Color3.new(1, 0, 0)
 UnSafeFR.BorderSizePixel = 4
 UnSafeFR.Position = UDim2.new(0.5, -244.5, 0, 15) 
-UnSafeFR.Size = UDim2.new(0, 500, 0, 308)
+UnSafeFR.Size = UDim2.new(0, 500, 0, 337)
 UnSafeFR.Visible = false
 
 KButton.Name = "KButton"
@@ -2308,7 +2311,7 @@ KButton.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton.BackgroundTransparency = 0.5
 KButton.BorderColor3 = Color3.new(1, 0, 0)
 KButton.BorderSizePixel = 2
-KButton.Position = UDim2.new(0.5, -219, 0, 55)
+KButton.Position = UDim2.new(0.5, -219, 0, 89)
 KButton.Size = UDim2.new(0, 438, 0, 25)
 KButton.Selected = true
 KButton.Font = Enum.Font.Cartoon
@@ -2325,7 +2328,7 @@ KButton2.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton2.BackgroundTransparency = 0.5
 KButton2.BorderColor3 = Color3.new(1, 0.4, 0)
 KButton2.BorderSizePixel = 2
-KButton2.Position = UDim2.new(0.5, -219, 0, 135)
+KButton2.Position = UDim2.new(0.5, -219, 0, 169)
 KButton2.Size = UDim2.new(0, 438, 0, 25)
 KButton2.Selected = true
 KButton2.Font = Enum.Font.Cartoon
@@ -2359,7 +2362,7 @@ Name.BackgroundColor3 = Color3.new(0, 0, 0)
 Name.BackgroundTransparency = 0.5
 Name.BorderColor3 = Color3.new(1, 0, 0)
 Name.BorderSizePixel = 2
-Name.Position = UDim2.new(0.5, -219, 0, 90)
+Name.Position = UDim2.new(0.5, -219, 0, 55)
 Name.Size = UDim2.new(0, 438, 0, 25)
 Name.Font = Enum.Font.SourceSans
 Name.PlaceholderColor3 = Color3.new(1, 0, 0)
@@ -2377,7 +2380,7 @@ KButton3.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton3.BackgroundTransparency = 0.5
 KButton3.BorderColor3 = Color3.new(1, 1, 1)
 KButton3.BorderSizePixel = 2
-KButton3.Position = UDim2.new(0.5, -219, 0, 169)
+KButton3.Position = UDim2.new(0.5, -219, 0, 202)
 KButton3.Size = UDim2.new(0, 438, 0, 25)
 KButton3.Selected = true
 KButton3.Font = Enum.Font.Cartoon
@@ -2394,7 +2397,7 @@ KButton4.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton4.BackgroundTransparency = 0.5
 KButton4.BorderColor3 = Color3.new(0, 0.798, 1)
 KButton4.BorderSizePixel = 2
-KButton4.Position = UDim2.new(0.5, -219, 0, 237)
+KButton4.Position = UDim2.new(0.5, -219, 0, 269)
 KButton4.Size = UDim2.new(0, 438, 0, 25)
 KButton4.Selected = true
 KButton4.Font = Enum.Font.Cartoon
@@ -2411,7 +2414,7 @@ KButton5.BackgroundColor3 = Color3.new(0, 0, 0)
 KButton5.BackgroundTransparency = 0.5
 KButton5.BorderColor3 = Color3.new(1, 0, 0)
 KButton5.BorderSizePixel = 2
-KButton5.Position = UDim2.new(0.5, -219, 0, 203)
+KButton5.Position = UDim2.new(0.5, -219, 0, 235)
 KButton5.Size = UDim2.new(0, 438, 0, 25)
 KButton5.Selected = true
 KButton5.Font = Enum.Font.Cartoon
@@ -2428,7 +2431,7 @@ KillAllOnReaper.BackgroundColor3 = Color3.new(0, 0, 0)
 KillAllOnReaper.BackgroundTransparency = 0.5
 KillAllOnReaper.BorderColor3 = Color3.new(1, 0, 0)
 KillAllOnReaper.BorderSizePixel = 2
-KillAllOnReaper.Position = UDim2.new(0.5, -219, 0, 271)
+KillAllOnReaper.Position = UDim2.new(0.5, -219, 0, 303)
 KillAllOnReaper.Size = UDim2.new(0, 438, 0, 25)
 KillAllOnReaper.Selected = true
 KillAllOnReaper.Font = Enum.Font.Cartoon
@@ -2444,6 +2447,7 @@ KillAllOnReaper.MouseButton1Down:connect(function()
     else
         G = 0
     end
+
     while G == 1 do
         for _, player in ipairs(Players:GetPlayers()) do
             local localPlayer = game.Players.LocalPlayer
@@ -2497,6 +2501,39 @@ KillAllOnReaper.MouseButton1Down:connect(function()
         end
         wait(1) 
     end
+end)
+
+KillReap.Name = "KillReap"
+KillReap.Parent = UnSafeFR
+KillReap.BackgroundColor3 = Color3.new(0, 0, 0)
+KillReap.BackgroundTransparency = 0.5
+KillReap.BorderColor3 = Color3.new(1, 0, 0)
+KillReap.BorderSizePixel = 2
+KillReap.Position = UDim2.new(0.5, -219, 0, 123)
+KillReap.Size = UDim2.new(0, 438, 0, 25)
+KillReap.Selected = true
+KillReap.Font = Enum.Font.Cartoon
+KillReap.Text = "All reap"
+KillReap.TextColor3 = Color3.new(1, 0, 0)
+KillReap.TextScaled = true
+KillReap.TextSize = 14
+KillReap.TextStrokeTransparency = 0
+KillReap.TextWrapped = true
+KillReap.MouseButton1Down:connect(function()
+    if not K then
+        K = true
+    else 
+        K = false
+    end
+
+    while K do 
+        local FindHum = player.Character:WaitForChild("Humanoid")                            
+        if FindHum then
+            game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap", player})
+        end
+        wait(1)
+    end
+
 end)
 
 SafeFR.Name = "SafeFR"
