@@ -376,8 +376,7 @@ local bannedUsernames = {
     "Rafaelox21",
     "TahNaJaCT",
     "Zack7757",
-    "zachod147",
-    "chewbobyjon"
+    "zachod147"
 }
 
 local function createPlayerStatLabels()
@@ -386,7 +385,7 @@ local function createPlayerStatLabels()
         local offset = 90 * math.floor((index - 1) / 5) 
         local column = (index - 1) % 5 
 
-        local function formatNumber(value)
+         local function formatNumber(value)
             if value < 1000 then
                 return tostring(value)
             elseif value < 1000000 then
@@ -422,7 +421,7 @@ local function createPlayerStatLabels()
         playerNameText.Text = player.Name
         playerNameText.TextSize = 15
 
-         if table.find(bannedUsernames, player.Name) then
+        if table.find(bannedUsernames, player.Name) then
             playerNameText.TextColor3 = Color3.new(1, 0, 0)
         else
             playerNameText.TextColor3 = Color3.new(1, 1, 1) 
@@ -491,12 +490,12 @@ local function updatePlayerStats()
 end
 
 Players.PlayerRemoving:Connect(function(player)
-    updatePlayerStats()
+    clearPlayerStatLabels()
     updateAllStatsFrameSize()
 end)
 
 Players.PlayerAdded:Connect(function(player)
-    updatePlayerStats()
+    createPlayerStatLabels()
     updateAllStatsFrameSize()
 end)
 
@@ -2279,7 +2278,6 @@ local Selected = Instance.new("StringValue")
 local Selected2 = Instance.new("StringValue")
 local KillAllOnReaper = Instance.new("TextButton")
 local KillKosOnReaper = Instance.new("TextButton")
-local G = 1
 --Properties:
 
 
@@ -2452,25 +2450,65 @@ KillAllOnReaper.TextSize = 14
 KillAllOnReaper.TextStrokeTransparency = 0
 KillAllOnReaper.TextWrapped = true
 KillAllOnReaper.MouseButton1Down:connect(function()
-    
-    if G == 1 then
-        G = 0
-    else
+    if G == 0 then
         G = 1
+    else
+        G = 0
     end
     while G == 1 do
         for _, player in ipairs(Players:GetPlayers()) do
-            local FindHum = player.Character:WaitForChild("Humanoid")
-			local PlayerHealth = FindHum.Health
-            if PlayerHealth > 0 then
-                game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
-                wait(0.2)
+            local localPlayer = game.Players.LocalPlayer
+            if player == Players.localPlayer then
+                print("oh")
+            else
+                if player then
+                    local playerPrivateStats = player:FindFirstChild("PrivateStats")
+                    if playerPrivateStats then
+                        local playerPsychicPower = playerPrivateStats:FindFirstChild("PsychicPower")
+                        if playerPsychicPower then
+                            local psychicPower = playerPsychicPower.Value
+                            local localPlayerPrivateStats = localPlayer:FindFirstChild("PrivateStats")
+                            if localPlayerPrivateStats then
+                                local localPlayerPsychicPower = localPlayerPrivateStats:FindFirstChild("PsychicPower")
+                                if localPlayerPsychicPower then
+                                    local localPlayerPower = localPlayerPsychicPower.Value / 100
+                                    if psychicPower > localPlayerPower then
+                                        -- print("oh")
+                                    else
+                                        local FindHum = player.Character:WaitForChild("Humanoid")
+                                        local PlayerHealth = converttoletter(string.format("%.0f", FindHum.Health))
+                                        if FindHum then
+                                            game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap", player})
+                                            -- print(player.Name .. " has been targeted for elimination.")  
+                                            local healthCheckInterval = 0.5 
+                                            while FindHum.Health > 0 do
+                                                wait(healthCheckInterval)
+                                                game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap", player})
+                                            end
+                                            -- print(player.Name .. " has been killed.")
+                                        end
+                                    
+                                    end
+                                else
+                                    -- print("Local player Psychic Power not found.")
+                                end
+                            else
+                                -- print("Local player PrivateStats not found.")
+                            end
+                        else
+                            -- print("Player Psychic Power not found.")
+                        end
+                    else
+                        -- print("Player PrivateStats not found.")
+                    end
+                else
+                    -- print("Player not found in Players.")
+                end
             end
         end
-        
+        wait(1) 
     end
 end)
-
 
 SafeFR.Name = "SafeFR"
 SafeFR.Parent = MainGUI
@@ -2619,24 +2657,6 @@ KillKosOnReaper.TextScaled = true
 KillKosOnReaper.TextSize = 14
 KillKosOnReaper.TextStrokeTransparency = 0
 KillKosOnReaper.TextWrapped = true
-KillKosOnReaper.MouseButton1Down:connect(function()
-    
-    if G == 0 then
-        G = 1
-    else
-        G = 0
-    end
-    while G == 1 do
-        for _, player in ipairs(bannedUsernames) do
-            local FindHum = player.Character:WaitForChild("Humanoid")
-			local PlayerHealth = FindHum.Health
-            if PlayerHealth > 0 then
-                game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap",game.Players[player.Name]})
-    
-            end
-        end
-    end
-end)
 
 PlrNameStats.Name = "PlrNameStats"
 PlrNameStats.Parent = Leaks
