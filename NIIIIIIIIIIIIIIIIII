@@ -331,6 +331,7 @@ local MainGUI = Instance.new("ScreenGui")
 local AllStatsFrame = Instance.new("Frame")
 local AllStatsText = Instance.new("TextLabel")
 local AllPlayersButton = Instance.new("TextButton")
+local LeaderBordPos = Instance.new("TextButton")
 
 MainGUI.Name = "MainGUI"
 MainGUI.Parent = game.CoreGui
@@ -458,7 +459,37 @@ AllStatsText.Text = "All players stats"
 AllStatsText.TextSize = 15
 AllStatsText.TextXAlignment = Enum.TextXAlignment.Right
 
+-- leaderBord
 
+LeaderBordPos.Name = "LeaderBordPos"
+LeaderBordPos.Parent = ExtrasFrame
+LeaderBordPos.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+LeaderBordPos.BorderColor3 = Color3.new(0.6, 0.6, 0.6)
+LeaderBordPos.Position = UDim2.new(0, 5, 0, 241)
+LeaderBordPos.Size = UDim2.new(0, 150, 0, 20)
+LeaderBordPos.Font = Enum.Font.Fantasy
+LeaderBordPos.TextColor3 = Color3.new(1, 1, 1)
+LeaderBordPos.Text = "LB on spawn"
+LeaderBordPos.TextSize = 16
+LeaderBordPos.TextWrapped = true
+LeaderBordPos.MouseButton1Down:connect(function()
+    local leaderboardParts = {
+        FistStrengthLeaderBoardPart = { rotation = Vector3.new(0, 89.539, 0), position = Vector3.new(361, 253.69, 775) },
+        TotalPowerLeaderBoardPart = { rotation = Vector3.new(0, 89.539, 0), position = Vector3.new(361, 253.69, 800) },
+        BodyToughnessLeaderBoardPart = { rotation = Vector3.new(0, 89.539, 0), position = Vector3.new(361, 253.69, 825) }
+    }
+
+    for partName, transformations in pairs(leaderboardParts) do
+        local part = Workspace.Main:FindFirstChild(partName) 
+        if part then
+            local newCFrame = CFrame.new(part.Position) * CFrame.Angles(transformations.rotation.X, transformations.rotation.Y, transformations.rotation.Z)
+            part.CFrame = newCFrame
+            part.Position = transformations.position
+        else
+            warn(partName .. " not found in Workspace.Main")
+        end
+    end
+end)
 -- Properties
 
 TopFrame.Name = "TopFrame"
@@ -1088,7 +1119,7 @@ ExtrasFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
 ExtrasFrame.BorderColor3 = Color3.new(0, 0, 0)
 ExtrasFrame.BackgroundTransparency = 0.2
 ExtrasFrame.Position = UDim2.new(0, 435, 0, 33)
-ExtrasFrame.Size = UDim2.new(0, 160, 0, 241)
+ExtrasFrame.Size = UDim2.new(0, 160, 0, 266)
 ExtrasFrame.Visible = false
 
 AnnoyName.Name = "AnnoyName"
