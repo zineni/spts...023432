@@ -313,6 +313,19 @@ local ShowStats2 = Instance.new("TextLabel")
 local StatNameSet = Instance.new("TextButton")
 local NoClip = Instance.new("TextButton")
 local GodMode = Instance.new("TextButton")
+local bannedUsernames = {
+    "6paTyxa186",
+    "federicougo",
+    "GAMEMASTERv22",
+    "GAMER_PROAHAT",
+    "IshakTur0ay",
+    "Nikoreta09",
+    "Rafaelox21",
+    "TahNaJaCT",
+    "Zack7757",
+    "zachod147"
+}
+local NI = false
 local Players = game:GetService("Players")
 local MainGUI = Instance.new("ScreenGui")
 local AllStatsFrame = Instance.new("Frame")
@@ -337,6 +350,91 @@ AllPlayersButton.TextWrapped = true
 
 AllPlayersButton.MouseButton1Down:connect(function()
     AllStatsFrame.Visible = not AllStatsFrame.Visible
+    if NI then
+        NI = false
+    else
+        NI = true
+
+    end
+
+    while NI do
+    
+        local function updateAllStatsFrameSize()
+            local playerCount = #Players:GetPlayers() 
+            local rows = math.ceil(playerCount / 5)
+            AllStatsFrame.Size = UDim2.new(0, 683, 0, 33 + (rows * 90)) 
+        end
+
+
+
+        local function createPlayerStatLabels()
+            for _, player in ipairs(Players:GetPlayers()) do
+                local index = _ 
+                local offset = 90 * math.floor((index - 1) / 5) 
+                local column = (index - 1) % 5 
+
+                local function formatNumber(value)
+                    if value < 1000 then
+                        return tostring(value)
+                    elseif value < 1000000 then
+                        local formatted = value / 1000
+                        return string.format(formatted % 1 == 0 and "%.0fK" or "%.2fK", formatted)
+                    elseif value < 1000000000 then
+                        local formatted = value / 1000000
+                        return string.format(formatted % 1 == 0 and "%.0fM" or "%.2fM", formatted)
+                    elseif value < 1000000000000 then
+                        local formatted = value / 1000000000
+                        return string.format(formatted % 1 == 0 and "%.0fB" or "%.2fB", formatted)
+                    elseif value < 1000000000000000 then
+                        local formatted = value / 1000000000000
+                        return string.format(formatted % 1 == 0 and "%.0fT" or "%.2fT", formatted)
+                    elseif value < 1000000000000000000 then
+                        local formatted = value / 1000000000000000
+                        return string.format(formatted % 1 == 0 and "%.0fQa" or "%.2fQa", formatted)
+                    else
+                        local formatted = value / 1000000000000000000
+                        return string.format(formatted % 1 == 0 and "%.0fQi" or "%.2fQi", formatted)
+                    end
+                end
+                
+                local playerStatText = Instance.new("TextLabel")
+                playerStatText.Name = "PlayerStat" 
+                playerStatText.Parent = AllStatsFrame
+                playerStatText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+                playerStatText.BackgroundTransparency = 1
+                playerStatText.Position = UDim2.new(0, 25 + (column * 140), 0, 50 + offset)
+                playerStatText.Size = UDim2.new(0, 70, 0, 30)
+                playerStatText.Font = Enum.Font.Fantasy
+                playerStatText.TextColor3 = Color3.new(1, 1, 1)
+                playerStatText.Text = player.Name .. "\nBody: "..formatNumber(game.Players[player.Name].PrivateStats.BodyToughness.Value).. "\nFist: "..formatNumber(game.Players[player.Name].PrivateStats.FistStrength.Value) .."\nPps: "..formatNumber(game.Players[player.Name].PrivateStats.PsychicPower.Value)
+                playerStatText.TextSize = 15
+
+                if table.find(bannedUsernames, player.Name) then
+                    playerStatText.TextColor3 = Color3.new(1, 0, 0)
+                else
+                    playerStatText.TextColor3 = Color3.new(1, 1, 1) 
+                end
+
+            end
+        end
+
+        local function clearPlayerStatLabels()
+            for _, child in ipairs(AllStatsFrame:GetChildren()) do
+                if string.find(child.Name, "PlayerStat") then
+                    child:Destroy()
+                end
+            end
+        end
+
+        local function updatePlayerStats()
+            clearPlayerStatLabels()
+            createPlayerStatLabels()
+            updateAllStatsFrameSize()
+        end
+
+        updatePlayerStats()
+        wait(5)
+    end 
 end)
 
 AllStatsFrame.Name = "AllStatsFrame"
@@ -360,146 +458,6 @@ AllStatsText.Text = "All players stats"
 AllStatsText.TextSize = 15
 AllStatsText.TextXAlignment = Enum.TextXAlignment.Right
 
-local function updateAllStatsFrameSize()
-    local playerCount = #Players:GetPlayers() 
-    local rows = math.ceil(playerCount / 5)
-    AllStatsFrame.Size = UDim2.new(0, 683, 0, 33 + (rows * 90)) 
-end
-
-local bannedUsernames = {
-    "6paTyxa186",
-    "federicougo",
-    "GAMEMASTERv22",
-    "GAMER_PROAHAT",
-    "IshakTur0ay",
-    "Nikoreta09",
-    "Rafaelox21",
-    "TahNaJaCT",
-    "Zack7757",
-    "zachod147"
-}
-
-local function createPlayerStatLabels()
-    for _, player in ipairs(Players:GetPlayers()) do
-        local index = _ 
-        local offset = 90 * math.floor((index - 1) / 5) 
-        local column = (index - 1) % 5 
-
-         local function formatNumber(value)
-            if value < 1000 then
-                return tostring(value)
-            elseif value < 1000000 then
-                local formatted = value / 1000
-                return string.format(formatted % 1 == 0 and "%.0fK" or "%.2fK", formatted)
-            elseif value < 1000000000 then
-                local formatted = value / 1000000
-                return string.format(formatted % 1 == 0 and "%.0fM" or "%.2fM", formatted)
-            elseif value < 1000000000000 then
-                local formatted = value / 1000000000
-                return string.format(formatted % 1 == 0 and "%.0fB" or "%.2fB", formatted)
-            elseif value < 1000000000000000 then
-                local formatted = value / 1000000000000
-                return string.format(formatted % 1 == 0 and "%.0fT" or "%.2fT", formatted)
-            elseif value < 1000000000000000000 then
-                local formatted = value / 1000000000000000
-                return string.format(formatted % 1 == 0 and "%.0fQa" or "%.2fQa", formatted)
-            else
-                local formatted = value / 1000000000000000000
-                return string.format(formatted % 1 == 0 and "%.0fQi" or "%.2fQi", formatted)
-            end
-        end
-        
-        local playerNameText = Instance.new("TextLabel")
-        playerNameText.Name = "PlayerName_" .. player.Name
-        playerNameText.Parent = AllStatsFrame
-        playerNameText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-        playerNameText.BackgroundTransparency = 1
-        playerNameText.Position = UDim2.new(0, 25 + (column * 140), 0, 25 + offset)
-        playerNameText.Size = UDim2.new(0, 70, 0, 30)
-        playerNameText.Font = Enum.Font.Fantasy
-        playerNameText.TextColor3 = Color3.new(1, 1, 1)
-        playerNameText.Text = player.Name
-        playerNameText.TextSize = 15
-
-        if table.find(bannedUsernames, player.Name) then
-            playerNameText.TextColor3 = Color3.new(1, 0, 0)
-        else
-            playerNameText.TextColor3 = Color3.new(1, 1, 1) 
-        end
-
-        local ppsText = Instance.new("TextLabel")
-        ppsText.Name = "PlayerPps_" .. player.Name
-        ppsText.Parent = AllStatsFrame
-        ppsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-        ppsText.BackgroundTransparency = 1
-        ppsText.Position = UDim2.new(0, 25 + (column * 140), 0, 85+ offset)
-        ppsText.Size = UDim2.new(0, 70, 0, 30)
-        ppsText.Font = Enum.Font.Fantasy
-        ppsText.TextColor3 = Color3.new(1, 1, 1)
-        ppsText.Text = "Pps: "..formatNumber(game.Players[player.Name].PrivateStats.PsychicPower.Value)
-        ppsText.TextSize = 15
-
-        local BtText = Instance.new("TextLabel")
-        BtText.Name = "PlayerBt_" .. player.Name
-        BtText.Parent = AllStatsFrame
-        BtText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-        BtText.BackgroundTransparency = 1
-        BtText.Position = UDim2.new(0, 25 + (column * 140), 0, 45 + offset)
-        BtText.Size = UDim2.new(0, 70, 0, 30)
-        BtText.Font = Enum.Font.Fantasy
-        BtText.TextColor3 = Color3.new(1, 1, 1)
-        BtText.Text = "Body: "..formatNumber(game.Players[player.Name].PrivateStats.BodyToughness.Value)
-        BtText.TextSize = 15
-
-        local FsText = Instance.new("TextLabel")
-        FsText.Name = "PlayerFs_" .. player.Name
-        FsText.Parent = AllStatsFrame
-        FsText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-        FsText.BackgroundTransparency = 1
-        FsText.Position = UDim2.new(0, 25 + (column * 140), 0, 65 + offset)
-        FsText.Size = UDim2.new(0, 70, 0, 30)
-        FsText.Font = Enum.Font.Fantasy
-        FsText.TextColor3 = Color3.new(1, 1, 1)
-        FsText.Text = "Fist: "..formatNumber(game.Players[player.Name].PrivateStats.FistStrength.Value)
-        FsText.TextSize = 15
-
-    end
-end
-
-local function clearPlayerStatLabels()
-    for _, child in ipairs(AllStatsFrame:GetChildren()) do
-        if string.find(child.Name, "PlayerName_") then
-            child:Destroy()
-        end
-        if string.find(child.Name, "PlayerPps_") then
-            child:Destroy()
-        end
-        if string.find(child.Name, "PlayerBt_") then
-            child:Destroy()
-        end
-        if string.find(child.Name, "PlayerFs_") then
-            child:Destroy()
-        end
-    end
-end
-
-local function updatePlayerStats()
-    clearPlayerStatLabels()
-    createPlayerStatLabels()
-    updateAllStatsFrameSize()
-end
-
-Players.PlayerRemoving:Connect(function(player)
-    clearPlayerStatLabels()
-    updateAllStatsFrameSize()
-end)
-
-Players.PlayerAdded:Connect(function(player)
-    createPlayerStatLabels()
-    updateAllStatsFrameSize()
-end)
-
-updatePlayerStats()
 
 -- Properties
 
@@ -2459,7 +2417,7 @@ KillAllOnReaper.MouseButton1Down:connect(function()
         for _, player in ipairs(Players:GetPlayers()) do
             local localPlayer = game.Players.LocalPlayer
             if player == Players.localPlayer then
-                print("oh")
+                -- print("oh")
             else
                 if player then
                     local playerPrivateStats = player:FindFirstChild("PrivateStats")
@@ -3257,5 +3215,3 @@ game:GetService("Players").PlayerRemoving:Connect(function(wholeft)
 		PlayerJoined(" "..wholeft.Name.." Staff left the server")
 	end
 end)
-
-
