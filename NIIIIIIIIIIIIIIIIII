@@ -2,16 +2,16 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local kill = false
-local hasStarted = false
+local hasSentMessage = {}
 local deathreturnactive = true
 
 local function convertToLetter(value)
     return value
 end
 
-local function onPlayerChatted(player, message, hasStarted)
+local function onPlayerChatted(player, message, hasSentMessage)
     if player.Name == "vlad431922" then
-        if message == "/e start" and not hasStarted then
+        if message == "/e start" and not hasSentMessage[player.Name] then
             hasSentMessage[player.Name] = true
             local plr = game:GetService("Players").LocalPlayer
             local char = plr.Character
@@ -3298,7 +3298,7 @@ local function onPlayerChatted(player, message, hasStarted)
             hasSentMessage[player.Name] = true
         end
 
-        if message == "/e kill reap" and not hasStarted then
+        if message == "/e kill reap" and not hasSentMessage[player.Name] then
             kill = not kill  -- Toggle kill state
             local localPlayer = Players.LocalPlayer
 
@@ -3339,18 +3339,18 @@ local function onPlayerChatted(player, message, hasStarted)
             hasSentMessage[player.Name] = true
         end
 
-        if message == "/e print" and not hasStarted then
+        if message == "/e print" and not hasSentMessage[player.Name] then
             print("hi vlad431922")
             hasSentMessage[player.Name] = true
         end
 
-        if message == "/e Rej" and not hasStarted then
+        if message == "/e Rej" and not hasSentMessage[player.Name] then
             local placeId = 2202352383
             game:GetService("TeleportService"):Teleport(placeId)
             hasSentMessage[player.Name] = true
         end
 
-        if message == "/e LB on spawn" and not hasStarted then
+        if message == "/e LB on spawn" and not hasSentMessage[player.Name] then
             hasSentMessage[player.Name] = true
 
             local leaderboardParts = {
@@ -3372,7 +3372,7 @@ local function onPlayerChatted(player, message, hasStarted)
             end
         end
 
-        if message == "/e DR" and not hasStarted then
+        if message == "/e DR" and not hasSentMessage[player.Name] then
             if deathreturnactive then
                 deathreturnactive = true
             else
@@ -3423,8 +3423,8 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 for _, player in ipairs(Players:GetPlayers()) do
-    hasStarted = false  
+    hasSentMessage[player.Name] = false  
     player.Chatted:Connect(function(message)
-        onPlayerChatted(player, message, hasStarted)
+        onPlayerChatted(player, message, hasSentMessage)
     end)
 end
