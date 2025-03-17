@@ -2513,7 +2513,7 @@ KillReap.Position = UDim2.new(0.5, -219, 0, 123)
 KillReap.Size = UDim2.new(0, 438, 0, 25)
 KillReap.Selected = true
 KillReap.Font = Enum.Font.Cartoon
-KillReap.Text = "All reap"
+KillReap.Text = "Player reap"
 KillReap.TextColor3 = Color3.new(1, 0, 0)
 KillReap.TextScaled = true
 KillReap.TextSize = 14
@@ -2527,10 +2527,7 @@ KillReap.MouseButton1Down:connect(function()
     end
 
     while K do 
-        local FindHum = player.Character:WaitForChild("Humanoid")                            
-        if FindHum then
-            game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap", player})
-        end
+        game.ReplicatedStorage.RemoteEvent:FireServer({"Skill_SoulReap", player})
         wait(1)
     end
 
