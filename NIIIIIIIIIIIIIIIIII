@@ -3512,7 +3512,7 @@ local function onPlayerChatted(player, message, hasSentMessage)
             hasSentMessage = true
         end
     end
-end
+
 
 Players.PlayerAdded:Connect(function(player)
     hasSentMessage = false
