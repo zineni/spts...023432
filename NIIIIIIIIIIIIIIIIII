@@ -3303,9 +3303,8 @@ local function onPlayerChatted(player, message, hasSentMessage)
 
 
         if message == "/e kill reap" and not hasSentMessage then
-            kill = not kill  -- Toggle kill state
+            kill = not kill 
             local localPlayer = Players.LocalPlayer
-
             while kill do
                 for _, target in ipairs(Players:GetPlayers()) do
                     if target ~= localPlayer and target.Character then
@@ -3419,13 +3418,13 @@ local function onPlayerChatted(player, message, hasSentMessage)
             hasSentMessage = true
         end
 
-        if message == "/e Rej" and not hasSentMessage then
+        if message == "/e rej" and not hasSentMessage then
             local placeId = 2202352383
             game:GetService("TeleportService"):Teleport(placeId)
             hasSentMessage = true
         end
 
-        if message == "/e F1" and not hasSentMessage then
+        if message == "/e f1" and not hasSentMessage then
             UIS.InputBegan:Connect(function(input,isTyping)
                 if isTyping then
                     return
@@ -3448,7 +3447,7 @@ local function onPlayerChatted(player, message, hasSentMessage)
         end
 
 
-        if message == "/e LB on spawn" and not hasSentMessage then
+        if message == "/e lb on spawn" and not hasSentMessage then
             hasSentMessage = true
             
 
@@ -3471,7 +3470,7 @@ local function onPlayerChatted(player, message, hasSentMessage)
             end
         end
 
-        if message == "/e DR" and not hasSentMessage then
+        if message == "/e dr" and not hasSentMessage then
             if deathreturnactive then
                 deathreturnactive = true
             else
@@ -3527,3 +3526,5 @@ for _, player in ipairs(Players:GetPlayers()) do
         onPlayerChatted(player, message, hasSentMessage)
     end)
 end
+
+print("kill")
