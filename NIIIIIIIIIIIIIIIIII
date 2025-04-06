@@ -3302,7 +3302,7 @@ local function onPlayerChatted(player, message, hasSentMessage)
 
 
 
-        if message == "/e kill reap" and not hasSentMessage then
+        elseif message == "/e kill reap" and not hasSentMessage then
             kill = not kill 
             local localPlayer = Players.LocalPlayer
             while kill do
@@ -3340,91 +3340,83 @@ local function onPlayerChatted(player, message, hasSentMessage)
                 wait(1)
             end
             hasSentMessage = true
-        end
 
-        if message == "/e fs rock" and not hasSentMessage then
+        elseif message == "/e fs rock" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(459, 248, 887)
-        end
                 
-        if message == "/e fs cristal" and not hasSentMessage then
+        elseif message == "/e fs cristal" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(409, 271, 978)
-        end
 
-        if message == "/e fs 1b" and not hasSentMessage then
+        elseif message == "/e fs 1b" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1176, 4789, -2293)
-        end
-        if message == "/e fs 10t" and not hasSentMessage then
+
+        elseif message == "/e fs 10t" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-369, 15735, -9)
-        end
 
-        if message == "/e fs 100b" and not hasSentMessage then
+        elseif message == "/e fs 100b" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1381, 9274, 1647)
-        end
 
-        if message == "/e fs" and not hasSentMessage then
+        elseif message == "/e fs" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2279, 1944, 1053)
-        end
 
-        if message == "/e bt 100" and not hasSentMessage then
+        elseif message == "/e bt 100" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(365, 249, -445)
-        end
 
-        if message == "/e bt 10k" and not hasSentMessage then
+        elseif message == "/e bt 10k" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(349, 263, -490)
-        end
 
-        if message == "/e bt 100k" and not hasSentMessage then
+        elseif message == "/e bt 100k" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1640, 258, 2244)
-        end
+        
 
-        if message == "/e bt 1m" and not hasSentMessage then
+        elseif message == "/e bt 1m" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2307, 976, 1068)
-        end
+        
 
-        if message == "/e bt 100m" and not hasSentMessage then
+        elseif message == "/e bt 100m" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2024, 714, -1860)
-        end
+        
 
-        if message == "/e bt 1b" and not hasSentMessage then
+        elseif message == "/e bt 1b" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-254, 286, 980)
-        end
+        
 
-        if message == "/e bt 100b" and not hasSentMessage then
+        elseif message == "/e bt 100b" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-271, 279, 991)
-        end
+        
 
-        if message == "/e bt 1t" and not hasSentMessage then
+        elseif message == "/e bt 1t" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-279, 279, 1007)
-        end
+        
 
-        if message == "/e pp 1m" and not hasSentMessage then
+        elseif message == "/e pp 1m" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2527, 5486, -532)
-        end
+        
 
-        if message == "/e pp 1b" and not hasSentMessage then
+        elseif message == "/e pp 1b" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2560, 5500, -439)
-        end
+        
 
-        if message == "/e pp 1t" and not hasSentMessage then
+        elseif message == "/e pp 1t" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2582, 5516, -504)
-        end
+        
 
-        if message == "/e pp 1qa" and not hasSentMessage then
+        elseif message == "/e pp 1qa" and not hasSentMessage then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2544, 5412, -495)
-        end
+        
 
-        if message == "/e print" and not hasSentMessage then
+        elseif message == "/e print" and not hasSentMessage then
             print("hi vlad431922")
             hasSentMessage = true
-        end
+        
 
-        if message == "/e rej" and not hasSentMessage then
+        elseif message == "/e rej" and not hasSentMessage then
             local placeId = 2202352383
             game:GetService("TeleportService"):Teleport(placeId)
             hasSentMessage = true
-        end
+        
 
-        if message == "/e f1" and not hasSentMessage then
+        elseif message == "/e f1" and not hasSentMessage then
             UIS.InputBegan:Connect(function(input,isTyping)
                 if isTyping then
                     return
@@ -3443,11 +3435,9 @@ local function onPlayerChatted(player, message, hasSentMessage)
 
                     end)
                 end
-            end) 
-        end
+            end)
 
-
-        if message == "/e lb on spawn" and not hasSentMessage then
+        elseif message == "/e lb1" and not hasSentMessage then
             hasSentMessage = true
             
 
@@ -3468,9 +3458,29 @@ local function onPlayerChatted(player, message, hasSentMessage)
                     warn(partName .. " not found in Workspace.Main")
                 end
             end
-        end
+			
+		elseif message == "/e lb2" and not hasSentMessage then
+			hasSentMessage = true
+				
 
-        if message == "/e dr" and not hasSentMessage then
+			local leaderboardParts = {
+				FistStrengthLeaderBoardPart = { rotation = Vector3.new(0, 89.539, 0), position = Vector3.new(260.4, 301.38, 785) },
+				TotalPowerLeaderBoardPart = { rotation = Vector3.new(0, -89.539, 0), position = Vector3.new(248.5, 301.38, 796.7) },
+				BodyToughnessLeaderBoardPart = { rotation = Vector3.new(0, 216.76, 0), position = Vector3.new(272.3, 301.38, 796.7) }
+			}
+
+			for partName, transformations in pairs(leaderboardParts) do
+
+				local part = Workspace.Main:FindFirstChild(partName) 
+				if part then
+					local newCFrame = CFrame.new(part.Position) * CFrame.Angles(transformations.rotation.X, transformations.rotation.Y, transformations.rotation.Z)
+					part.CFrame = newCFrame
+					part.Position = transformations.position
+				end
+			end
+		end
+
+        elseif message == "/e dr" and not hasSentMessage then
             if deathreturnactive then
                 deathreturnactive = true
             else
