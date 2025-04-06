@@ -1,5 +1,3 @@
----
----
 /e start
 /e kill reap
 /e dp
@@ -10,5 +8,3 @@
 /e lb1, lb2
 /e f1 (respawn without loss rep)
 /e rej (doesn't work)
----
----
