@@ -1,4 +1,23 @@
 -- start
+local plr = game:GetService("Players").LocalPlayer
+local char = plr.Character
+local root = char.HumanoidRootPart
+local Plrs = game:GetService("Players")
+local MyPlr = Plrs.LocalPlayer
+local MyChar = MyPlr.Character
+local UIS = game:GetService'UserInputService'
+local RepStor = game:GetService("ReplicatedStorage")
+local CoreGui = game:GetService("CoreGui")
+local Run = game:GetService("RunService")
+local mouse = game.Players.LocalPlayer:GetMouse()
+local human = plr.Character:WaitForChild("Humanoid")
+
+local VirtualUser=game:service'VirtualUser'
+game:service'Players'.LocalPlayer.Idled:connect(function()
+	VirtualUser:CaptureController()
+	VirtualUser:ClickButton2(Vector2.new())
+end)
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local kill = false
@@ -32,8 +51,7 @@ local clanMembers = {
     "Quphang1",
     "lerok200976",
     "GaladonT",
-    "betto_15896",
-    
+    "betto_15896"
 }
 local kosMembers = {
     "GAMEMASTERv22",
@@ -102,6 +120,229 @@ settplocation = false
 local function convertToLetter(value)
     return value
 end
+
+ESPEnabled = false
+ESPLength = 20000
+
+CharAddedEvent = { }
+
+Plrs.PlayerAdded:connect(function(plr)
+	if CharAddedEvent[plr.Name] == nil then
+		CharAddedEvent[plr.Name] = plr.CharacterAdded:connect(function(char)
+			if ESPEnabled then
+				RemoveESP(plr)
+				CreateESP(plr)
+			end
+		end)
+	end
+end)
+
+Plrs.PlayerRemoving:connect(function(plr)
+	if CharAddedEvent[plr.Name] ~= nil then
+		CharAddedEvent[plr.Name]:Disconnect()
+		CharAddedEvent[plr.Name] = nil
+	end
+	RemoveESP(plr)
+end)
+
+function CreateESP(plr)
+	if plr ~= nil then
+		local GetChar = plr.Character
+		if not GetChar then return end
+		local GetHead do
+			repeat wait() until GetChar:FindFirstChild("Head")
+		end
+		GetHead = GetChar.Head
+		
+		local bb = Instance.new("BillboardGui", CoreGui)
+		bb.Adornee = GetHead
+		bb.ExtentsOffset = Vector3.new(0, 1, 0)
+		bb.AlwaysOnTop = true
+		bb.Size = UDim2.new(0, 5, 0, 5)
+		bb.StudsOffset = Vector3.new(0, 3, 0)
+		bb.Name = "ESP_" .. plr.Name
+		
+		local frame = Instance.new("Frame", bb)
+		frame.ZIndex = 10
+		frame.BackgroundTransparency = 1
+		frame.Size = UDim2.new(1, 0, 1, 0)
+		
+		local TxtName = Instance.new("TextLabel", frame)
+		TxtName.Name = "Names"
+		TxtName.ZIndex = 10
+		TxtName.Text = plr.Name
+		TxtName.BackgroundTransparency = 1
+		TxtName.Position = UDim2.new(0, 0, 0, -45)
+		TxtName.Size = UDim2.new(1, 0, 10, 0)
+		TxtName.Font = "SourceSansBold"
+		TxtName.TextColor3 = Color3.new(0, 0, 0)
+		TxtName.TextSize = 14
+		TxtName.TextStrokeTransparency = 0.5
+		
+		local TxtDist = Instance.new("TextLabel", frame)
+		TxtDist.Name = "Dist"
+		TxtDist.ZIndex = 10
+		TxtDist.Text = ""
+		TxtDist.BackgroundTransparency = 1
+		TxtDist.Position = UDim2.new(0, 0, 0, -35)
+		TxtDist.Size = UDim2.new(1, 0, 10, 0)
+		TxtDist.Font = "SourceSansBold"
+		TxtDist.TextColor3 = Color3.new(0, 0, 0)
+		TxtDist.TextSize = 15
+		TxtDist.TextStrokeTransparency = 0.5
+
+		local TxtHealth = Instance.new("TextLabel", frame)
+		TxtHealth.Name = "Health"
+		TxtHealth.ZIndex = 10
+		TxtHealth.Text = ""
+		TxtHealth.BackgroundTransparency = 1
+		TxtHealth.Position = UDim2.new(0, 0, 0, -25)
+		TxtHealth.Size = UDim2.new(1, 0, 10, 0)
+		TxtHealth.Font = "SourceSansBold"
+		TxtHealth.TextColor3 = Color3.new(0, 0, 0)
+		TxtHealth.TextSize = 15
+		TxtHealth.TextStrokeTransparency = 0.5
+
+		local TxtFist = Instance.new("TextLabel", frame)
+		TxtFist.Name = "Fist"
+		TxtFist.ZIndex = 10
+		TxtFist.Text = ""
+		TxtFist.BackgroundTransparency = 1
+		TxtFist.Position = UDim2.new(0, 0, 0, -15)
+		TxtFist.Size = UDim2.new(1, 0, 10, 0)
+		TxtFist.Font = "SourceSansBold"
+		TxtFist.TextColor3 = Color3.new(0, 0, 0)
+		TxtFist.TextSize = 15
+		TxtFist.TextStrokeTransparency = 0.5
+
+		local TxtPsychic = Instance.new("TextLabel", frame)
+		TxtPsychic.Name = "Psychic"
+		TxtPsychic.ZIndex = 10
+		TxtPsychic.Text = ""
+		TxtPsychic.BackgroundTransparency = 1
+		TxtPsychic.Position = UDim2.new(0, 0, 0, -5)
+		TxtPsychic.Size = UDim2.new(1, 0, 10, 0)
+		TxtPsychic.Font = "SourceSansBold"
+		TxtPsychic.TextColor3 = Color3.new(0, 0, 0)
+		TxtPsychic.TextSize = 15
+		TxtPsychic.TextStrokeTransparency = 0.5
+	end
+end
+
+function UpdateESP(plr)
+	local Find = CoreGui:FindFirstChild("ESP_" .. plr.Name)
+	if Find then
+		local plrStatus = game.Players[plr.Name].leaderstats.Status
+		if plrStatus.Value == "Criminal" then
+			Find.Frame.Names.TextColor3 = Color3.new(1, 0.3, 0.3)
+		elseif plrStatus.Value == "Lawbreaker" then
+			Find.Frame.Names.TextColor3 = Color3.new(0.8, 0.3, 0.1)
+		elseif plrStatus.Value == "Guardian" then
+			Find.Frame.Names.TextColor3 = Color3.new(0.1, 0.8, 0.4)
+		elseif plrStatus.Value == "Protector" then
+			Find.Frame.Names.TextColor3 = Color3.new(1, 0.8, 0.5)
+		elseif plrStatus.Value == "Supervillain" then
+			Find.Frame.Names.TextColor3 = Color3.new(1, 0, 0)
+		elseif plrStatus.Value == "Superhero" then
+			Find.Frame.Names.TextColor3 = Color3.new(0, 0.6, 1)
+		else
+			Find.Frame.Names.TextColor3 = Color3.new(1, 1, 1)
+		end
+		Find.Frame.Dist.TextColor3 = Color3.new(1, 1, 1)
+		Find.Frame.Health.TextColor3 = Color3.new(1, 1, 1)
+		Find.Frame.Fist.TextColor3 = Color3.new(1, 1, 1)
+		Find.Frame.Psychic.TextColor3 = Color3.new(1, 1, 1)
+		local GetChar = plr.Character
+		if MyChar and GetChar then
+			local Find2 = MyChar:FindFirstChild("HumanoidRootPart")
+			local Find3 = GetChar:FindFirstChild("HumanoidRootPart")
+			local Find4 = GetChar:FindFirstChildOfClass("Humanoid")
+			if Find2 and Find3 then
+				local pos = Find3.Position
+				local Dist = (Find2.Position - pos).magnitude
+				if Dist > ESPLength then
+					Find.Frame.Names.Visible = false
+					Find.Frame.Dist.Visible = false
+					Find.Frame.Health.Visible = false
+					Find.Frame.Fist.Visible = false
+					Find.Frame.Psychic.Visible = false
+					return
+				else
+					Find.Frame.Names.Visible = true
+					Find.Frame.Dist.Visible = true
+					Find.Frame.Health.Visible = true
+					Find.Frame.Fist.Visible = true
+					Find.Frame.Psychic.Visible = true
+				end
+				Find.Frame.Dist.Text = "Distance: " .. string.format("%.0f", Dist)
+				--Find.Frame.Pos.Text = "(X: " .. string.format("%.0f", pos.X) .. ", Y: " .. string.format("%.0f", pos.Y) .. ", Z: " .. string.format("%.0f", pos.Z) .. ")"
+				if Find4 then
+					Find.Frame.Health.Text = "Health: " ..converttoletter(string.format("%.0f", Find4.Health))
+					Find.Frame.Fist.Text = "Fist: " ..converttoletter(string.format("%.0f", game.Players[plr.Name].PrivateStats.FistStrength.Value))
+					Find.Frame.Psychic.Text = "Psychic: " ..converttoletter(string.format("%.0f", game.Players[plr.Name].PrivateStats.PsychicPower.Value))
+				else
+					Find.Frame.Health.Text = ""
+					Find.Frame.Fist.Text = ""
+					Find.Frame.Psychic.Text = ""
+				end
+			end
+		end
+	end
+end
+
+function RemoveESP(plr)
+	local ESP = CoreGui:FindFirstChild("ESP_" .. plr.Name)
+	if ESP then
+		ESP:Destroy()
+	end
+end
+
+local MainGUI = Instance.new("ScreenGui")
+local TopFrame = Instance.new("Frame")
+local MainFrame = Instance.new("Frame")
+local esptrack = Instance.new("TextButton")
+local ESPLength = Instance.new("TextBox")
+
+MainGUI.Name = "MainGUI"
+MainGUI.Parent = game.CoreGui
+MainGUI.ResetOnSpawn = false
+
+function round(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.floor(num * mult + 0.5) / mult
+end
+		
+function converttoletter(num)
+	if num / 1e21 >=1 then
+		newnum = num / 1e21
+		return round(newnum, 6).. "Sx"
+	elseif num / 1e18 >=1 then
+		newnum = num / 1e18
+		return round(newnum, 6).. "Qi"
+	elseif num / 1e15 >=1 then
+		newnum = num / 1e15
+		return round(newnum, 6).. "Qa"
+	elseif num / 1e12 >=1 then
+		newnum = num / 1e12
+		return round(newnum, 6).. "T"
+	elseif num / 1e09 >=1 then
+		newnum = num / 1e09
+		return round(newnum, 6).. "B"
+	elseif num / 1e06 >=1 then
+		newnum = num / 1e06
+		return round(newnum, 6).. "M"
+	elseif num / 1e03 >=1 then
+		newnum = num / 1e03
+		return round(newnum, 6).. "K"
+	else return num
+	end
+end
+
+Run:BindToRenderStep("UpdateESP", Enum.RenderPriority.Character.Value, function()
+	for _, v in next, Plrs:GetPlayers() do
+		UpdateESP(v)
+	end
+end)
 
 coroutine.wrap(function()
 	while true do
@@ -3339,51 +3580,10 @@ coroutine.wrap(function()
 					end
 				end)
 
-				function PlayerJoined(text)
-					game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
-						Text = text;
-						Color = Color3.fromRGB(0, 85, 255);
-						Font = Enum.Font.Oswald;
-						TextSize = 20
-					})
-				end
-
-				function PlayerLeft(text)
-					game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
-						Text = text;
-						Color = Color3.fromRGB(255, 0, 0);
-						Font = Enum.Font.Oswald;
-						TextSize = 20
-					})
-				end
-
-				game:GetService("Players").PlayerAdded:Connect(function(whojoined)
-					PlayerJoined(" "..whojoined.Name.." joined the server")
-					if whojoined.Name == "Ultimet_Frayzer" then
-						PlayerJoined(" "..whojoined.Name.." Owner joined the server")
-					elseif whojoined.Name == "Ultimet_FrayzerALT" then
-						PlayerJoined(" "..whojoined.Name.." Owner joined the server")
-					elseif whojoined.Name == "slt51perohackeado" then
-						PlayerJoined(" "..whojoined.Name.." Staff  joined the server")
-						updateAllStatsFrameSize()
-					end
-				end)
-					
-
-				game:GetService("Players").PlayerRemoving:Connect(function(wholeft)
-					PlayerLeft(" "..wholeft.Name.." left The Server")
-					if wholeft.Name == "Ultimet_Frayzer" then
-						PlayerJoined(" "..wholeft.Name.." Owner left the server")
-					elseif wholeft.Name == "Ultimet_FrayzerALT" then
-						PlayerJoined(" "..wholeft.Name.." Owner left the server")
-					elseif wholeft.Name == "slt51perohackeado2" then
-						PlayerJoined(" "..wholeft.Name.." Staff left the server")
-					end
-				end)
 				player:SetAttribute("HasSentMessage", true)
 
 
-			elseif message == "!e kill reap" and not hasSentMessage then
+			elseif message == "/e kill reap" and not hasSentMessage then
 				kill = not kill 
 				local localPlayer = Players.LocalPlayer
 				while kill do
@@ -3422,70 +3622,70 @@ coroutine.wrap(function()
 				end
 				player:SetAttribute("HasSentMessage", true)
 
-			elseif message == "!e spawn" and not hasSentMessage then
+			elseif message == "/e spawn" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(459, 248, 887)
 					
-			elseif message == "!e fs cristal" and not hasSentMessage then
+			elseif message == "/e fs cristal" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(409, 271, 978)
 
-			elseif message == "!e fs 1b" and not hasSentMessage then
+			elseif message == "/e fs 1b" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1176, 4789, -2293)
 
-			elseif message == "!e fs 10t" and not hasSentMessage then
+			elseif message == "/e fs 10t" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-369, 15735, -9)
 
-			elseif message == "!e fs 100b" and not hasSentMessage then
+			elseif message == "/e fs 100b" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1381, 9274, 1647)
 
-			elseif message == "!e fs" and not hasSentMessage then
+			elseif message == "/e fs" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2279, 1944, 1053)
 
-			elseif message == "!e bt 100" and not hasSentMessage then
+			elseif message == "/e bt 100" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(365, 249, -445)
 
-			elseif message == "!e bt 10k" and not hasSentMessage then
+			elseif message == "/e bt 10k" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(349, 263, -490)
 
-			elseif message == "!e bt 100k" and not hasSentMessage then
+			elseif message == "/e bt 100k" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1640, 258, 2244)
 			
 
-			elseif message == "!e bt 1m" and not hasSentMessage then
+			elseif message == "/e bt 1m" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2307, 976, 1068)
 			
 
-			elseif message == "!e bt 100m" and not hasSentMessage then
+			elseif message == "/e bt 100m" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2024, 714, -1860)
 			
 
-			elseif message == "!e bt 1b" and not hasSentMessage then
+			elseif message == "/e bt 1b" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-254, 286, 980)
 			
 
-			elseif message == "!e bt 100b" and not hasSentMessage then
+			elseif message == "/e bt 100b" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-271, 279, 991)
 			
 
-			elseif message == "!e bt 10t" and not hasSentMessage then
+			elseif message == "/e bt 10t" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-279, 279, 1007)
 			
 
-			elseif message == "!e pp 1m" and not hasSentMessage then
+			elseif message == "/e pp 1m" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2527, 5486, -532)
 			
 
-			elseif message == "!e pp 1b" and not hasSentMessage then
+			elseif message == "/e pp 1b" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2560, 5500, -439)
 			
 
-			elseif message == "!e pp 1t" and not hasSentMessage then
+			elseif message == "/e pp 1t" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2582, 5516, -504)
 			
 
-			elseif message == "!e pp 1qa" and not hasSentMessage then
+			elseif message == "/e pp 1qa" and not hasSentMessage then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2544, 5412, -495)
 			
-			elseif message == "!e farm fs" and not hasSentMessage then 
+			elseif message == "/e farm fs" and not hasSentMessage then 
 				-- print("on")
 				farmfistactive = not farmfistactive
 				spawn(function()
@@ -3515,7 +3715,7 @@ coroutine.wrap(function()
 				end)
 				player:SetAttribute("HasSentMessage", true)
 
-			elseif message == "!e farm pp" and not hasSentMessage then 
+			elseif message == "/e farm pp" and not hasSentMessage then 
 				-- print("on")
 				farmpsychicactive = not farmpsychicactive
 				spawn(function()
@@ -3548,15 +3748,15 @@ coroutine.wrap(function()
 				end)
 				player:SetAttribute("HasSentMessage", true)
 			
-			elseif message == "!e print" and not hasSentMessage then
+			elseif message == "/e print" and not hasSentMessage then
 				print("hi vlad431922")
 				player:SetAttribute("HasSentMessage", true)
 
-			elseif message == "!e rej" and not hasSentMessage then
+			elseif message == "/e rej" and not hasSentMessage then
 				game:GetService("TeleportService"):Teleport(2202352383)
 				player:SetAttribute("HasSentMessage", true)
 
-			elseif message == "!e lb1" and not hasSentMessage then
+			elseif message == "/e lb1" and not hasSentMessage then
 				player:SetAttribute("HasSentMessage", true)
 				
 				local leaderboardParts = {
@@ -3577,7 +3777,7 @@ coroutine.wrap(function()
 					end
 				end
 				
-			elseif message == "!e lb2" and not hasSentMessage then
+			elseif message == "/e lb2" and not hasSentMessage then
 				player:SetAttribute("HasSentMessage", true)
 
 				local leaderboardParts = {
@@ -3596,7 +3796,7 @@ coroutine.wrap(function()
 					end
 				end
 			
-			elseif message == "!e aps" and not hasSentMessage then    
+			elseif message == "/e aps" and not hasSentMessage then    
 				NI = not NI
 				AllStatsFrame.Visible = NI
 
@@ -3675,8 +3875,36 @@ coroutine.wrap(function()
 					updatePlayerStats()	
 					wait(1) 
 				end
+			
+			elseif message == "/e esp" and not hasSentMessage then
+				ESPEnabled = not ESPEnabled
+				if ESPEnabled then
+					while ESPEnabled do
+						for _, v in next, Plrs:GetPlayers() do
+							if v ~= MyPlr then
+								if CharAddedEvent[v.Name] == nil then
+									CharAddedEvent[v.Name] = v.CharacterAdded:connect(function(Char)
+										if ESPEnabled then
+											RemoveESP(v)
+											CreateESP(v)
+										end
+										repeat wait() until Char:FindFirstChild("HumanoidRootPart")
+									end)
+								end
+								RemoveESP(v)
+								CreateESP(v)
+							end
+						end
+						wait()
+					end
+				else
+					for _, v in next, Plrs:GetPlayers() do
+						RemoveESP(v)
+					end
+				end
+				player:SetAttribute("HasSentMessage", true)
 				
-			elseif message == "!e dp" and not hasSentMessage then
+			elseif message == "/e dp" and not hasSentMessage then
 				if deathreturnactive then
 					deathreturnactive = true
 				else
@@ -3685,6 +3913,7 @@ coroutine.wrap(function()
 
 				spawn(function()
 					while true do
+
 						if deathreturnactive then
 							player = game:GetService("Players").LocalPlayer
 							player.Character.Humanoid.Died:connect(function()
@@ -3710,6 +3939,9 @@ coroutine.wrap(function()
 							game.Players.LocalPlayer.PlayerGui.IntroGui.Enabled = false
 							game.Players.LocalPlayer.PlayerGui.ScreenGui.Enabled = true
 							playerdied = false
+						end
+						for _, v in next, Plrs:GetPlayers() do
+							UpdateESP(v)
 						end
 						wait(1)
 					end		
@@ -3753,7 +3985,7 @@ local function ColorText(name)
     elseif isInTable(name, kosMembers) then
         return Color3.fromRGB(255, 0, 0)
     else 
-        return Color3.fromRGB(0, 89, 255)
+        return Color3.fromRGB(0, 255, 50)
     end
 end
 
