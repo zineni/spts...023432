@@ -63,6 +63,7 @@ local kosMembers = {
     "Zack7757",
     "zachod147"
 }
+local run2 = false
 local NI = true
 local AllStatsFrame = Instance.new("Frame")
 local AllStatsText = Instance.new("TextLabel")
@@ -3402,9 +3403,10 @@ coroutine.wrap(function()
 					while wait() do
 					if run2 then
 					local Remote = game.ReplicatedStorage['RemoteEvent']
-					local Arguments = {[1] = {[1] = "Skill_SpherePunch",[2] = Vector3.new(0,99999,0)}}
+					local targetCoordinates = Vector3.new(0, 99999, 0)
+					local Arguments = {[1] = {[1] = "Skill_SpherePunch", [2] = targetCoordinates}}
 					Remote:FireServer(unpack(Arguments))
-					tp()
+					tp() 
 					end
 					end
 					end
@@ -3581,6 +3583,31 @@ coroutine.wrap(function()
 				end)
 
 				player:SetAttribute("HasSentMessage", true)
+
+			elseif message == "/e stak" and not hasSentMessage then
+				run2 = not run2
+				hasSentMessage = true
+				if run2 then
+					for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+						if v.Name ~= MyPlr.Name and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+							local Remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
+							if Remote then
+								local targetCoordinates = v.Character.HumanoidRootPart.CFrame
+								coroutine.wrap(function()
+									while run2 do
+										local EnergySphere = workspace.Storage:FindFirstChild("EnergySphere8")
+										if EnergySphere then
+											EnergySphere.CFrame = targetCoordinates
+											local Arguments = {[1] = {[1] = "Skill_SpherePunch", [2] = Vector3.new(0, 9999999, 0)}}
+											Remote:FireServer(unpack(Arguments))
+										end
+										wait()
+									end
+								end)()
+							end
+						end
+					end
+				end
 
 
 			elseif message == "/e kill reap" and not hasSentMessage then
@@ -3879,23 +3906,20 @@ coroutine.wrap(function()
 			elseif message == "/e esp" and not hasSentMessage then
 				ESPEnabled = not ESPEnabled
 				if ESPEnabled then
-					while ESPEnabled do
-						for _, v in next, Plrs:GetPlayers() do
-							if v ~= MyPlr then
-								if CharAddedEvent[v.Name] == nil then
-									CharAddedEvent[v.Name] = v.CharacterAdded:connect(function(Char)
-										if ESPEnabled then
-											RemoveESP(v)
-											CreateESP(v)
-										end
-										repeat wait() until Char:FindFirstChild("HumanoidRootPart")
-									end)
-								end
-								RemoveESP(v)
-								CreateESP(v)
+					for _, v in next, Plrs:GetPlayers() do
+						if v ~= MyPlr then
+							if CharAddedEvent[v.Name] == nil then
+								CharAddedEvent[v.Name] = v.CharacterAdded:connect(function(Char)
+									if ESPEnabled then
+										RemoveESP(v)
+										CreateESP(v)
+									end
+									repeat wait() until Char:FindFirstChild("HumanoidRootPart")
+								end)
 							end
+							RemoveESP(v)
+							CreateESP(v)
 						end
-						wait()
 					end
 				else
 					for _, v in next, Plrs:GetPlayers() do
