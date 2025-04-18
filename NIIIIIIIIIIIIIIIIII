@@ -69,6 +69,48 @@ local AllStatsFrame = Instance.new("Frame")
 local AllStatsText = Instance.new("TextLabel")
 local AllPlayersButton = Instance.new("TextButton")
 local LeaderBordPos = Instance.new("TextButton")
+local gm = false
+repeat task.wait() until game:IsLoaded()
+
+local isnetworkowner = isnetworkowner or function() return true end
+local cloneref = cloneref or function(instance) return instance end
+local Services = setmetatable({}, {
+    ["__index"] = function(self, Name)
+        local Service = cloneref(game:GetService(Name))
+        self[Name] = Service
+        return Service
+    end
+})
+local ReplicatedStorage = Services.ReplicatedStorage
+local RemoteEvent = ReplicatedStorage.RemoteEvent
+local RemoteFunction = ReplicatedStorage.RemoteFunction
+local RunService = Services.RunService
+local UserInputService = Services.UserInputService
+local TeleportService = Services.TeleportService
+local HttpService = Services.HttpService 
+local TweenService = Services.TweenService
+local Lighting = Services.Lighting
+local Stats = Services.Stats
+local StarterGui = Services.StarterGui
+local VirtualUser = Services.VirtualUser
+local Workspace = Services.Workspace
+local CoreGui = Services.CoreGui
+local Players = Services.Players
+local LocalPlayer = Players.LocalPlayer
+local PrivateStats = LocalPlayer.PrivateStats
+local PlayerGui = LocalPlayer.PlayerGui
+local ScreenGui = PlayerGui.ScreenGui
+local Camera = Workspace.CurrentCamera
+local Storage = Workspace.Storage
+local PlaceId = game.PlaceId
+local JobId = game.JobId
+local identifyexecutor = identifyexecutor or function() return "hueta" end
+local InjectorName = identifyexecutor()
+local RespawnHealth = .5
+local StockGravity = 196.1999969482422
+local teleportsvalue, teleportposition, oldUtilities = {}, {}, {}
+local Targets, Whitelisted, Target = {}, {}, Players:GetChildren()[math.random(1, #Players:GetChildren())].Name
+local TCAdded, LPCAdded, CChanged, RespawnFunction, Teleported, Changed, SavedCameraCFrame, SavedPosition, GodCheck
 
 -- local script
 UIS.InputBegan:Connect(function(input,isTyping)
@@ -3584,31 +3626,59 @@ coroutine.wrap(function()
 
 				player:SetAttribute("HasSentMessage", true)
 
-			elseif message == "/e stak" and not hasSentMessage then
+			elseif message == "/e stack" and not hasSentMessage then
 				run2 = not run2
-				hasSentMessage = true
+				print(1)
+				player:SetAttribute("HasSentMessage", true)
 				if run2 then
-					for _, v in pairs(game:GetService("Players"):GetPlayers()) do
-						if v.Name ~= MyPlr.Name and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+					for i, player in ipairs(game.Players:GetChildren()) do
+						if player.Name ~= MyPlr.Name and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 							local Remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
 							if Remote then
-								local targetCoordinates = v.Character.HumanoidRootPart.CFrame
+								local targetCoordinates = player.Character.HumanoidRootPart.CFrame
 								coroutine.wrap(function()
 									while run2 do
 										local EnergySphere = workspace.Storage:FindFirstChild("EnergySphere8")
 										if EnergySphere then
+											local humanoid = player.Character:FindFirstChild("Humanoid")
+											EnergySphere.Transparency = 1
 											EnergySphere.CFrame = targetCoordinates
-											local Arguments = {[1] = {[1] = "Skill_SpherePunch", [2] = Vector3.new(0, 9999999, 0)}}
-											Remote:FireServer(unpack(Arguments))
 										end
-										wait()
+										wait(0.3)
 									end
 								end)()
 							end
 						end
 					end
 				end
+			
+			
+			elseif message:sub(1, 9) == "/e stack " and not hasSentMessage then
+				run2 = not run2
+				player:SetAttribute("HasSentMessage", true)
+				local targetPlayerName = message:sub(10)
+				local targetPlayer = game:GetService("Players"):FindFirstChild(targetPlayerName)
 
+				if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+					local Remote = game.ReplicatedStorage:FindFirstChild('RemoteEvent')
+					if Remote then
+						local targetCoordinates = targetPlayer.Character.HumanoidRootPart.CFrame
+						coroutine.wrap(function()
+							while run2 do
+								for i = 1, 9 do
+									local EnergySphere = workspace.Storage:FindFirstChild("EnergySphere" .. i)
+									if EnergySphere then
+										EnergySphere.Transparency = 1
+										EnergySphere.CFrame = targetCoordinates
+									end
+								end
+								wait()
+							end
+						end)()
+					end
+				else
+					print("Player not found or does not have a character.")
+				end
 
 			elseif message == "/e kill reap" and not hasSentMessage then
 				kill = not kill 
@@ -3906,28 +3976,25 @@ coroutine.wrap(function()
 			elseif message == "/e esp" and not hasSentMessage then
 				ESPEnabled = not ESPEnabled
 				if ESPEnabled then
-					for _, v in next, Plrs:GetPlayers() do
-						if v ~= MyPlr then
-							if CharAddedEvent[v.Name] == nil then
-								CharAddedEvent[v.Name] = v.CharacterAdded:connect(function(Char)
-									if ESPEnabled then
+					while ESPEnabled do
+						for _, v in next, Plrs:GetPlayers() do
+							if v ~= MyPlr then
+								if CharAddedEvent[v.Name] == nil then
+									CharAddedEvent[v.Name] = v.CharacterAdded:connect(function(Char)
 										RemoveESP(v)
 										CreateESP(v)
-									end
-									repeat wait() until Char:FindFirstChild("HumanoidRootPart")
-								end)
+										repeat wait() until Char:FindFirstChild("HumanoidRootPart")
+									end)
+								end
+								RemoveESP(v)
+								CreateESP(v)
 							end
-							RemoveESP(v)
-							CreateESP(v)
 						end
-					end
-				else
-					for _, v in next, Plrs:GetPlayers() do
-						RemoveESP(v)
+						wait(5)
 					end
 				end
 				player:SetAttribute("HasSentMessage", true)
-				
+			
 			elseif message == "/e dp" and not hasSentMessage then
 				if deathreturnactive then
 					deathreturnactive = true
@@ -3968,6 +4035,7 @@ coroutine.wrap(function()
 							UpdateESP(v)
 						end
 						wait(1)
+						
 					end		
 				end)
 				player:SetAttribute("HasSentMessage", true)
