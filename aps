@@ -152,112 +152,83 @@ local MainFrame = Instance.new("Frame")
 MainGUI.Name = "MainGUI"
 MainGUI.Parent = game.CoreGui
 MainGUI.ResetOnSpawn = false
+ 
+NI = true
+AllStatsFrame.Visible = NI
 
+while NI do
+	local function updateAllStatsFrameSize()
+		local playerCount = #Players:GetPlayers() 
+		local rows = math.ceil(playerCount / 5)
+		AllStatsFrame.Size = UDim2.new(0, 683, 0, 33 + (rows * 90)) 
+	end
 
-coroutine.wrap(function()
-	while true do
-		local function onPlayerChatted(player, message, hasSentMessage)	
-			if message == "/e aps on" and not hasSentMessage then    
-				NI = true
-				AllStatsFrame.Visible = NI
+	local function createPlayerStatLabels()
+		for _, player in ipairs(Players:GetPlayers()) do
+			local index = _ 
+			local offset = 90 * math.floor((index - 1) / 5) 
+			local column = (index - 1) % 5 
 
-				while NI do
-					local function updateAllStatsFrameSize()
-						local playerCount = #Players:GetPlayers() 
-						local rows = math.ceil(playerCount / 5)
-						AllStatsFrame.Size = UDim2.new(0, 683, 0, 33 + (rows * 90)) 
-					end
-
-					local function createPlayerStatLabels()
-						for _, player in ipairs(Players:GetPlayers()) do
-							local index = _ 
-							local offset = 90 * math.floor((index - 1) / 5) 
-							local column = (index - 1) % 5 
-
-							local function formatNumber(value)
-								if value < 1000 then
-									return tostring(value)
-								elseif value < 1000000 then
-									local formatted = value / 1000
-									return string.format(formatted % 1 == 0 and "%.0fK" or "%.2fK", formatted)
-								elseif value < 1000000000 then
-									local formatted = value / 1000000
-									return string.format(formatted % 1 == 0 and "%.0fM" or "%.2fM", formatted)
-								elseif value < 1000000000000 then
-									local formatted = value / 1000000000
-									return string.format(formatted % 1 == 0 and "%.0fB" or "%.2fB", formatted)
-								elseif value < 1000000000000000 then
-									local formatted = value / 1000000000000
-									return string.format(formatted % 1 == 0 and "%.0fT" or "%.2fT", formatted)
-								elseif value < 1000000000000000000 then
-									local formatted = value / 1000000000000000
-									return string.format(formatted % 1 == 0 and "%.0fQa" or "%.2fQa", formatted)
-								else
-									local formatted = value / 1000000000000000000
-									return string.format(formatted % 1 == 0 and "%.0fQi" or "%.2fQi", formatted)
-								end
-							end
-							
-							local playerStatText = Instance.new("TextLabel")
-							playerStatText.Name = "PlayerStat" 
-							playerStatText.Parent = AllStatsFrame
-							playerStatText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-							playerStatText.BackgroundTransparency = 1
-							playerStatText.Position = UDim2.new(0, 25 + (column * 140), 0, 50 + offset)
-							playerStatText.Size = UDim2.new(0, 70, 0, 30)
-							playerStatText.Font = Enum.Font.Fantasy
-							playerStatText.TextColor3 = Color3.new(1, 1, 1)
-							playerStatText.Text = player.Name .. "\nBody: "..formatNumber(game.Players[player.Name].PrivateStats.BodyToughness.Value).. "\nFist: "..formatNumber(game.Players[player.Name].PrivateStats.FistStrength.Value) .."\nPps: "..formatNumber(game.Players[player.Name].PrivateStats.PsychicPower.Value)
-							playerStatText.TextSize = 15
-
-							if table.find(kosMembers, player.Name) then
-								playerStatText.TextColor3 = Color3.new(1, 0, 0)
-							else
-								playerStatText.TextColor3 = Color3.new(1, 1, 1) 
-							end
-
-						end
-					end
-
-					local function clearPlayerStatLabels()
-						for _, child in ipairs(AllStatsFrame:GetChildren()) do
-							if string.find(child.Name, "PlayerStat") then
-								child:Destroy()
-							end
-						end
-					end
-
-					local function updatePlayerStats()
-						clearPlayerStatLabels()
-						createPlayerStatLabels()
-						updateAllStatsFrameSize()
-					end
-
-					updatePlayerStats()	
-					wait(1) 
+			local function formatNumber(value)
+				if value < 1000 then
+					return tostring(value)
+				elseif value < 1000000 then
+					local formatted = value / 1000
+					return string.format(formatted % 1 == 0 and "%.0fK" or "%.2fK", formatted)
+				elseif value < 1000000000 then
+					local formatted = value / 1000000
+					return string.format(formatted % 1 == 0 and "%.0fM" or "%.2fM", formatted)
+				elseif value < 1000000000000 then
+					local formatted = value / 1000000000
+					return string.format(formatted % 1 == 0 and "%.0fB" or "%.2fB", formatted)
+				elseif value < 1000000000000000 then
+					local formatted = value / 1000000000000
+					return string.format(formatted % 1 == 0 and "%.0fT" or "%.2fT", formatted)
+				elseif value < 1000000000000000000 then
+					local formatted = value / 1000000000000000
+					return string.format(formatted % 1 == 0 and "%.0fQa" or "%.2fQa", formatted)
+				else
+					local formatted = value / 1000000000000000000
+					return string.format(formatted % 1 == 0 and "%.0fQi" or "%.2fQi", formatted)
 				end
+			end
 			
-			elseif message == "/e aps off" and not hasSentMessage then
-				NI = false			
-				AllStatsFrame.Visible = NI
+			local playerStatText = Instance.new("TextLabel")
+			playerStatText.Name = "PlayerStat" 
+			playerStatText.Parent = AllStatsFrame
+			playerStatText.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+			playerStatText.BackgroundTransparency = 1
+			playerStatText.Position = UDim2.new(0, 25 + (column * 140), 0, 50 + offset)
+			playerStatText.Size = UDim2.new(0, 70, 0, 30)
+			playerStatText.Font = Enum.Font.Fantasy
+			playerStatText.TextColor3 = Color3.new(1, 1, 1)
+			playerStatText.Text = player.Name .. "\nBody: "..formatNumber(game.Players[player.Name].PrivateStats.BodyToughness.Value).. "\nFist: "..formatNumber(game.Players[player.Name].PrivateStats.FistStrength.Value) .."\nPps: "..formatNumber(game.Players[player.Name].PrivateStats.PsychicPower.Value)
+			playerStatText.TextSize = 15
+
+			if table.find(kosMembers, player.Name) then
+				playerStatText.TextColor3 = Color3.new(1, 0, 0)
+			else
+				playerStatText.TextColor3 = Color3.new(1, 1, 1) 
 			end
 
-		Players.PlayerAdded:Connect(function(player)
-			player:SetAttribute("HasSentMessage", false)
-			
-			player.Chatted:Connect(function(message)
-				local hasSentMessage = player:GetAttribute("HasSentMessage")
-				onPlayerChatted(player, message, hasSentMessage)    
-			end)
-		end)
-
-		for _, player in ipairs(Players:GetPlayers()) do
-			player:SetAttribute("HasSentMessage", false)
-			player.Chatted:Connect(function(message)
-				local hasSentMessage = player:GetAttribute("HasSentMessage")
-				onPlayerChatted(player, message, hasSentMessage)
-			end)
 		end
-		wait(1)
 	end
-end)()
+
+	local function clearPlayerStatLabels()
+		for _, child in ipairs(AllStatsFrame:GetChildren()) do
+			if string.find(child.Name, "PlayerStat") then
+				child:Destroy()
+			end
+		end
+	end
+
+	local function updatePlayerStats()
+		clearPlayerStatLabels()
+		createPlayerStatLabels()
+		updateAllStatsFrameSize()
+	end
+
+	updatePlayerStats()	
+	wait(1) 
+end
+			
